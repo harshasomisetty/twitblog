@@ -1,0 +1,20 @@
+* Twitter to Blog
+** Premise
+Twitter has so much information hidden in it's threads, but navigating them by topic is somewhat hard.
+
+This is my attempt at using Twitter's API to convert a user's account into a essentially a blog
+
+
+** Plan [0/3]
+- [ ] Python to manage tweet data
+  - [ ] Algo to get main thread tweets
+  - [ ] Get informative user replies, and main account replies to these replies
+  - [ ] Topic Modeling Based Search
+- [ ] MongoDB to store data
+  - [ ] Python connection
+- [ ] React to display Webpage
+  - [ ] UI for choosing users
+  - [ ] figure out tailwind css for theme
+
+  Overall, the plan is to do all the tweet data processing in python, and store data in mongo db, and serve results using flask
+  then react connects to flask and makes it look nice
