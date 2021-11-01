@@ -3,6 +3,7 @@ import json
 import urlexpander
 import re
 from tqdm import tqdm
+from .infoPipeline import DataPrep
 
 thread_dir = "data/threads/"
 
@@ -154,7 +155,8 @@ def thread_extraction_pipeline(api, cur_user: str, thread_length: int):
     threads = clean_threads(tweet_dict, thread_dict,
                             3)  # attaches tweet test, stores thread ids
 
-    save_threads_json(threads, cur_user)
-
+    final_threads = DataPrep().prep_json_data(threads, cur_user)
+    save_threads_json(final_threads, cur_user)
     print("got", str(len(threads)), "threads")
-    return threads
+
+    return final_threads
