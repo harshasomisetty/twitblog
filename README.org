@@ -18,3 +18,14 @@ This is my attempt at using Twitter's API to convert a user's account into a ess
 
   Overall, the plan is to do all the tweet data processing in python, and store data in mongo db, and serve results using flask
   then react connects to flask and makes it look nice
+
+** JSON Outline
+plan is to store each thread into schema
+#+begin_src javascript
+  const schema = {
+      author: { type: 'keyword'},
+      title: { type: 'keyword'}, // keywords of thread
+      tweet_ids: {type: list},
+      text: {type: 'text'}
+  
+#+end_src
