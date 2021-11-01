@@ -1,12 +1,8 @@
 from TwitBlog.twitterApi import TwitterAPI
 from TwitBlog.threadFilter import thread_extraction_pipeline
+from TwitBlog.infoPipeline import DataPrep
 import configparser
-import spacy
-import pytextrank
 import json
-
-nlp = spacy.load("en_core_web_sm")
-nlp.add_pipe("textrank")
 
 config = configparser.ConfigParser(interpolation=None)
 config.read("config.ini")
@@ -22,12 +18,17 @@ if __name__ == "__main__":
     cur_user = "punk6529"
     # cur_user = "balajis"
     thread_length = 3
-    # text = "What does due process look like for social networks? I believe in the medium term, the next generation of social networks will be built from the ground up to use crypto for governance."
 
-    # doc = nlp(text)
-    # for phrase in doc._.phrases:
+    threads = thread_extraction_pipeline(api, cur_user, thread_length)
+
+    ling = DataPrep()
+
+    final_threads = ling.prep_json_data(threads, cur_user)
+    with open("test.json", "w+") as file:
+        json.dump(final_threads, file, indent=1)
+    # text = threads[-2][0].split("\n**********\n")[0]
+    # doc = ling.nlp(text)
+    # for phrase in doc._.phrases[:5]:
     #     print(phrase.text)
     #     print(phrase.rank, phrase.count)
     #     print(phrase.chunks)
-
-    thread_extraction_pipeline(api, cur_user, thread_length)

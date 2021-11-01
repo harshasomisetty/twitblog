@@ -1,31 +1,44 @@
+
+
 * Twitter to Blog
+:PROPERTIES:
+:LOGGING: nil
+:END:
 ** Premise
 Twitter has so much information hidden in it's threads, but navigating them by topic is somewhat hard.
 
 This is my attempt at using Twitter's API to convert a user's account into a essentially a blog
+** Plan
 
-
-** Plan [0/3]
-- [ ] Python to manage tweet data
-  - [ ] Algo to get main thread tweets
-  - [ ] Get informative user replies, and main account replies to these replies
-  - [ ] Topic Modeling Based Search
-- [ ] MongoDB to store data
-  - [ ] Python connection
-- [ ] React to display Webpage
-  - [ ] UI for choosing users
-  - [ ] figure out tailwind css for theme
+*** Barebones [1/3]
+**** TODO Python to manage tweet data [2/2]
+***** DONE Algo to get main thread tweets
+***** DONE Make Titles of Threads keywords (find with spacy)
+**** TODO Elasticsearch to store data and query [2/3]
+***** DONE Figure out schema
+***** DONE save json data with python
+***** TODO load data with JS
+**** TODO React to display Webpage [0/1]
+***** TODO display threads
+***** TODO Display threads per user
+***** TODO display each thread in its own page
+***** TODO Link each tweet to original page
+***** TODO display each thread in a clean card
+***** TODO Figure out nice UI
+***** TODO Sort threads 
 
   Overall, the plan is to do all the tweet data processing in python, and store data in mongo db, and serve results using flask
-  then react connects to flask and makes it look nice
+  then react connects to flask and makes it look
 
-** JSON Outline
-plan is to store each thread into schema
-#+begin_src javascript
-  const schema = {
-      author: { type: 'keyword'},
-      title: { type: 'keyword'}, // keywords of thread
-      tweet_ids: {type: list},
-      text: {type: 'text'}
-  
-#+end_src
+*** future
+**** TODO make spacy phrase finding cleaner by getting rid of numbers and common phrases
+**** TODO add engagement metrics, and display best threads at top
+***** other options for thread display, sort by newest, oldest, longest, shortest, most famous
+** Storing data
+*** DB of user
+store user id, keywords from all threads,
+
+*** DB of threads
+needs to be elasticsearch for speed
+each thread will have user id, text, keywords
+

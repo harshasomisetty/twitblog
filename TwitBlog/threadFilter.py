@@ -157,3 +157,4 @@ def thread_extraction_pipeline(api, cur_user: str, thread_length: int):
     save_threads_json(threads, cur_user)
 
     print("got", str(len(threads)), "threads")
+    return threads
