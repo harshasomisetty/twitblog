@@ -15,10 +15,10 @@ This is my attempt at using Twitter's API to convert a user's account into a ess
 **** TODO Elasticsearch to store data and query [2/3]
 ***** DONE Figure out schema
 ***** DONE save json data with python
-***** TODO load data with JS
-**** TODO React to display Webpage [0/1]
-***** TODO display threads
-***** TODO Display threads per user
+***** NEXT load data with JS
+**** TODO React to display Webpage [0/7]
+***** NEXT display threads
+***** NEXT Display threads per user
 ***** TODO display each thread in its own page
 ***** TODO Link each tweet to original page
 ***** TODO display each thread in a clean card

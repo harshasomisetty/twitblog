@@ -24,6 +24,7 @@ key words of the first tweet in thread
             t_full_text, t_ids = thread_tuples[i]
             final_data[t_ids[0]] = {
                 "text": t_full_text,
-                "keywords": [phrase.text for phrase in doc._.phrases[:5]]
+                "keywords": [phrase.text for phrase in doc._.phrases[:5]],
+                "statuses": thread_tuples[i][1]
             }
         return final_data

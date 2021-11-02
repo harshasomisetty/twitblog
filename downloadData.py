@@ -14,8 +14,8 @@ api = TwitterAPI(username=config['TwitterConfig']['Username'],
                  token_secret=config['TwitterConfig']["AccessSecret"])
 
 if __name__ == "__main__":
-    cur_user = "punk6529"
-    # cur_user = "balajis"
+    # cur_user = "punk6529"
+    cur_user = "balajis"
     thread_length = 3
 
     threads = thread_extraction_pipeline(api, cur_user, thread_length)
