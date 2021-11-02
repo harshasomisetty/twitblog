@@ -1,2 +1,6 @@
 node_modules/
 npm-debug.log
+*cache*
+b
+package-lock.json
+*.#*
