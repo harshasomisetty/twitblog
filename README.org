@@ -6,6 +6,8 @@
 Twitter has so much information hidden in it's threads, but navigating them by topic is somewhat hard.
 
 This is my attempt at using Twitter's API to convert a user's account into a essentially a blog
+
+I'll basically be using the MERN stack, as I realized later
 ** Plan
   Overall, the plan is to do all the tweet data processing in python, and store data in elasticsearc, and serve results using react
 *** Barebones [1/3]
@@ -37,3 +39,7 @@ store user id, keywords from all threads,
 needs to be elasticsearch for speed
 each thread will have user id, text, keywords
 
+** Other notes
+Used [[https://blog.patricktriest.com/text-search-docker-elasticsearch/][this vue and elastic tutorial]] and [[https://blog.logrocket.com/full-text-search-with-node-js-and-elasticsearch-on-docker/][this other tutorial]] to help figure out the MERN stack
+
+For refactoring the app after solidifying my stack, I used [[https://www.section.io/engineering-education/build-and-dockerize-a-full-stack-react-app-with-nodejs-and-nginx/][this]] link

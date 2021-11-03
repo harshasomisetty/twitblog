@@ -1,6 +1,6 @@
 const express = require('express')
 const cors = require('cors')
-const search = require('./search')
+/* const search = require('./search') */
 const app = express()
 const testAPIRouter = require("./routes/testAPI");
 const port = process.env.PORT || 3000
@@ -8,7 +8,7 @@ const port = process.env.PORT || 3000
 app.use(cors())
 
 app.get('/', function (req, res) {
-  res.send("hi from express main")
+  res.send("hi from express main post restruc")
 })
 
 app.use("/testAPI", testAPIRouter);
