@@ -1,14 +1,54 @@
+from tqdm import tqdm
 import os
 import json
 import urlexpander
 import re
-from tqdm import tqdm
-from .infoPipeline import DataPrep
+import spacy
+import pytextrank
+import twitterApi
+from twitterApi import TwitterAPI
 
-thread_dir = "data/threads/"
+import configparser
+
+config = configparser.ConfigParser(interpolation=None)
+config.read("config.ini")
+
+api = TwitterAPI(username=config['TwitterConfig']['Username'],
+                 bearer_token=config['TwitterConfig']["Bearer"],
+                 key=config['TwitterConfig']["ApiKey"],
+                 secret=config['TwitterConfig']["ApiSecret"],
+                 token=config['TwitterConfig']["Access"],
+                 token_secret=config['TwitterConfig']["AccessSecret"])
+
+data_dir = config['Data']['data_dir']
 
 
-# converts list of json tweets into dict
+class DataPrep:
+    # Class to run spacy pipeline
+    def __init__(self):
+        self.nlp = spacy.load("en_core_web_sm")
+        self.nlp.add_pipe("textrank")
+
+    def prep_json_data(self, thread_tuples, cur_user):
+        final_data = {}
+
+        intros = [[text[0].split("\n**********\n")[0], ind]
+                  for ind, text in enumerate(thread_tuples)]
+
+        # multiprocess all thread intros to get a potential title
+        for doc, i in tqdm(self.nlp.pipe(intros, as_tuples=True)):
+            t_full_text, t_ids = thread_tuples[i]
+            final_data[t_ids[0]] = {
+                "text": t_full_text,
+                "keywords": [phrase.text for phrase in doc._.phrases[:5]],
+                "statuses": thread_tuples[i][1]
+            }
+
+        # creating a dict of tweet id to info
+        return final_data
+
+
+# converts list of json tweet list into dict
 # key of dict is status id, value is other payload info
 def get_tweet_dict(tweets):
     tweet_dict = {}
@@ -20,19 +60,19 @@ def get_tweet_dict(tweets):
     return tweet_dict
 
 
-def load_tweets(username: str, thread_dir: str, api):
-
-    # check if tweets are previously downloaded
-    if username in [file[1:-5] for file in os.listdir("data/tweets")]:
+def load_tweets(username: str, api):
+    tweet_location = data_dir + "tweets/u" + username + ".json"
+    # download tweets again if doesn't already exist
+    if username in [file[1:-5] for file in os.listdir(data_dir + "tweets")]:
         print("Loading previously downloaded", username, "tweets")
-        with open("data/tweets/u" + username + ".json", "r") as file:
+        with open(tweet_location, "r") as file:
             tweets = json.loads(file.read())
     else:
         print("Downloading new", username, "tweets")
 
         tweets = api.get_historical_tweets(username)
         if tweets != -1:
-            with open("data/tweets/u" + username + ".json", "w+") as file:
+            with open(tweet_location, "w+") as file:
                 json.dump(tweets, file, indent=1)
     return get_tweet_dict(tweets)
 
@@ -129,28 +169,26 @@ def clean_threads(tweet_dict, thread_dict, thread_length: int):
 
 
 def save_threads(threads, cur_user: str):
+    thread_dir = data_dir + cur_user + "/"
     for thread in threads:
         text = thread[0]
         t_ids = thread[1]
-        with open(thread_dir + cur_user + "/" + str(t_ids[0]) + ".org",
-                  "w+") as file:
+        with open(thread_dir + str(t_ids[0]) + ".org", "w+") as file:
             file.write("[[https://twitter.com/" + cur_user + "/status/" +
                        str(t_ids[0]) + "][Original Thread]]\n\n\n\n")
             file.write(expand_tweet_text(text))
 
 
 def save_threads_json(threads, cur_user: str):
+    thread_dir = data_dir + "threads/" + cur_user + ".json"
 
-    if not os.path.exists(thread_dir):
-        os.makedirs(thread_dir)
-
-    with open(thread_dir + cur_user + ".json", "w+") as file:
+    with open(thread_dir, "w+") as file:
         json.dump(threads, file, indent=1)
 
 
-def thread_extraction_pipeline(api, cur_user: str, thread_length: int):
-    thread_dir = "data/threads/" + cur_user + "/"
-    tweet_dict = load_tweets(cur_user, thread_dir, api)
+def thread_extraction_pipeline(cur_user: str, thread_length: int):
+    thread_dir = data_dir + cur_user + "/"
+    tweet_dict = load_tweets(cur_user, api)
     thread_dict = get_threads(tweet_dict)  # dict of (root id, children)
     threads = clean_threads(tweet_dict, thread_dict,
                             3)  # attaches tweet test, stores thread ids
