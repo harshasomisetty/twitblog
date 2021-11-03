@@ -21,6 +21,7 @@ async function checkConnection () {
 
 async function resetIndex () {
   if (await esclient.indices.exists({ index })) {
+    console.log('resetting')
     await esclient.indices.delete({ index })
   }
 
@@ -30,7 +31,7 @@ async function resetIndex () {
 }
 
 
-async function putBookMapping () {
+async function putTweetMapping () {
   const schema = {
     title: { type: 'keyword' },
     author: { type: 'keyword' },
@@ -38,7 +39,7 @@ async function putBookMapping () {
     text: { type: 'text' }
   }
 
-  return client.indices.putMapping({ index, type, body: { properties: schema } })
+  return esclient.indices.putMapping({ index, type, body: { properties: schema } })
 }
 
 module.exports = {
