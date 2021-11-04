@@ -42,4 +42,4 @@ each thread will have user id, text, keywords
 ** Other notes
 Used [[https://blog.patricktriest.com/text-search-docker-elasticsearch/][this vue and elastic tutorial]] and [[https://blog.logrocket.com/full-text-search-with-node-js-and-elasticsearch-on-docker/][this other tutorial]] to help figure out the MERN stack
 
-For refactoring the app after solidifying my stack, I used [[https://www.section.io/engineering-education/build-and-dockerize-a-full-stack-react-app-with-nodejs-and-nginx/][this]] link
+For refactoring the app after solidifying my stack, I used [[https://www.section.io/engineering-education/build-and-dockerize-a-full-stack-react-app-with-nodejs-and-nginx/][this]] link. Also, [[https://tiangolo.medium.com/react-in-docker-with-nginx-built-with-multi-stage-docker-builds-including-testing-8cc49d6ec305][this link]] help directly build the app and push into nginx

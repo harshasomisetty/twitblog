@@ -30,7 +30,7 @@ class DataPrep:
         self.nlp.add_pipe("textrank")
 
     def prep_json_data(self, thread_tuples, cur_user):
-        final_data = {}
+        final_data = []
 
         intros = [[text[0].split("\n**********\n")[0], ind]
                   for ind, text in enumerate(thread_tuples)]
@@ -38,11 +38,15 @@ class DataPrep:
         # multiprocess all thread intros to get a potential title
         for doc, i in tqdm(self.nlp.pipe(intros, as_tuples=True)):
             t_full_text, t_ids = thread_tuples[i]
-            final_data[t_ids[0]] = {
-                "text": t_full_text,
+            final_data.append({
+                "root_id":
+                t_ids[0],
+                "text":
+                t_full_text,
                 "keywords": [phrase.text for phrase in doc._.phrases[:5]],
-                "statuses": thread_tuples[i][1]
-            }
+                "statuses":
+                thread_tuples[i][1]
+            })
 
         # creating a dict of tweet id to info
         return final_data

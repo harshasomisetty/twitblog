@@ -1,55 +1,34 @@
 version: '3.9'
-
 services:
-      
-  api:
-    container_name: Twit-api
-    image: node:12.18.1
-    build: .
+  server: 
+    container_name: Twit-server
+    build:
+      context: ./server
+      dockerfile: Dockerfile
     ports:
-      - "3000:3000" # Expose API port
-    environment: # Set ENV vars
-     - NODE_ENV=local
-     - ES_HOST=elasticsearch
-     - PORT=3000
-     - ELASTIC_URL=http://elasticsearch:9200
+      - "5000:5000"
     volumes:
       - .:/usr/src/app/data
-    links:
-      - elasticsearch
-    depends_on:
-      - elasticsearch
     networks:
-      - esnet
+      - app-net
 
   frontend:
     container_name: Twit-frontend
-    image: nginx
-    volumes: 
-      - ./public:/usr/share/nginx/html
-    ports: 
-      - "8080:80"
-
-  elasticsearch:
-    container_name: Twit-search
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.14.2
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     volumes:
-      - esdata:/usr/share/elasticsearch/data
-    environment:
-      - discovery.type=single-node
-      - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - /app/node_modules
+      - ./client:/app
+    depends_on:
+      - server
     ports:
-      - "9300:9300"
-      - "9200:9200"
-    logging:
-      driver: none
+      - "3000:3000"
     networks:
-      - esnet
-    profiles:
-      - disabled
+      - app-net
+
 volumes:
   esdata:
-networks:
-  esnet:
 
+networks:
+  app-net:

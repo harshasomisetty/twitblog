@@ -3,7 +3,7 @@ const cors = require('cors')
 /* const search = require('./search') */
 const app = express()
 const testAPIRouter = require("./routes/testAPI");
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 5000
 
 app.use(cors())
 
