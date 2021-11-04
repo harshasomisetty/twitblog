@@ -34,7 +34,7 @@ class DataPrep:
 
         intros = [[text[0].split("\n**********\n")[0], ind]
                   for ind, text in enumerate(thread_tuples)]
-
+        stopwords = self.nlp.Defaults.stop_words
         # multiprocess all thread intros to get a potential title
         for doc, i in tqdm(self.nlp.pipe(intros, as_tuples=True)):
             t_full_text, t_ids = thread_tuples[i]
@@ -43,7 +43,11 @@ class DataPrep:
                 t_ids[0],
                 "text":
                 t_full_text,
-                "keywords": [phrase.text for phrase in doc._.phrases[:5]],
+                "keywords":
+                ", ".join([
+                    phrase.text for phrase in doc._.phrases[:5]
+                    if phrase.text not in stopwords
+                ]),
                 "statuses":
                 thread_tuples[i][1]
             })

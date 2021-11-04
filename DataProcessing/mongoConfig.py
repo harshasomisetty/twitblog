@@ -14,14 +14,14 @@ class Config(object):
 
 class ProductionConfig(Config):
     def __init__(self):
-        self.MONGO_URI = "mongodb+srv://"+os.getenv("MONGO_USER")+\
-            ":"+urllib.parse.quote(str(os.getenv("MONGO_PASS")))+\
-            "@cluster0.apaqs.mongodb.net/"+str(os.getenv("MONGO_DB"))+\
-            "?retryWrites=true&w=majority"
-        self.cluster = pymongo.MongoClient(self.MONGO_URI)
-        self.db = self.cluster["production"]
 
-    def create_user_tweet_db(self, author, threads):
-        collection = self.db[author]
+        self.cluster = pymongo.MongoClient(os.getenv("MONGO_URI"))
+
+    def create_author_thread_db(self, author, threads):
+        collection = self.cluster["threads"][author]
         collection.drop()
         collection.insert_many(threads)
+
+    def create_author_data_db(self, author, data):
+        collection = self.cluster["authors"]["info"]
+        collection.insert(data)
