@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./App.css";
-import SearchBox from './components/SearchBox.js'
-/* const axios = require('axios'); */
+import SearchBox from "./components/SearchBox.js";
+const axios = require("axios");
 
 /* import { Button, Container, Card, Row } from 'react-bootstrap' */
 
@@ -9,6 +10,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { apiResponse: "", searchTerm: "" };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   callAPI() {
@@ -19,24 +22,46 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log("start")
+    console.log("mount");
     this.callAPI();
   }
 
-  search(e) {
-    console.log("bro")
+  componentWillUnmount() {
+    console.log("unmount");
   }
-  
+
+  handleChange(e) {
+    this.setState({ searchTerm: e.target.value });
+  }
+  handleSubmit = (e, data) => {
+    const url = "http://localhost:5000/author/" + this.state.searchTerm;
+    console.log(url);
+    axios
+      .get(url)
+      .then((res) => this.setState({ searchTerm: res.data.title }))
+      .catch(function (error) {
+        console.log(error);
+      })
+      .then(function () {
+        console.log("done");
+      });
+
+    e.preventDefault();
+  };
+
   render() {
     return (
       <div>
-      <p> in react app</p>
-      <SearchBox onSubmit={this.search} />
-
-      <p>hi {this.state.apiResponse}</p>
+        <SearchBox
+          handleSubmit={this.handleSubmit}
+          handleChange={this.handleChange}
+          placeholder="enter tweet"
+        />
+        <p>
+          hi {this.state.apiResponse} and {this.state.searchTerm}
+        </p>
       </div>
     );
   }
 }
-
 export default App;
