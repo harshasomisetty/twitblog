@@ -3,8 +3,8 @@ from threadFilter import thread_extraction_pipeline
 import mongoConfig
 from mongoConfig import ProductionConfig
 
-# cur_user = "balajis"
-cur_user = "VitruviusCurve"
+cur_user = "balajis"
+# cur_user = "VitruviusCurve"
 thread_length = 3
 
 threads = thread_extraction_pipeline(cur_user, thread_length)

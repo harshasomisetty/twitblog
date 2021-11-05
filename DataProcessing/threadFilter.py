@@ -40,7 +40,7 @@ class DataPrep:
             t_full_text, t_ids = thread_tuples[i]
             final_data.append({
                 "root_id":
-                t_ids[0],
+                str(t_ids[0]),
                 "text":
                 t_full_text,
                 "keywords":

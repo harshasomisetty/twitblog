@@ -25,6 +25,7 @@ app.get("/", function (req, res) {
 
 app.use("/testAPI", testAPIRouter);
 app.use("/search", searchRouter);
+app.use("/author", authorRouter);
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
