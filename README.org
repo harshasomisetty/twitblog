@@ -18,27 +18,16 @@ I'll basically be using the MERN stack, as I realized later
 ***** DONE Figure out schema
 ***** DONE save json data with python
 **** TODO React to display Webpage [0/7]
-***** NEXT display threads
-***** NEXT Display threads per user
-***** TODO display each thread in its own page
-***** TODO Link each tweet to original page
 ***** TODO display each thread in a clean card
 ***** TODO Figure out nice UI
-***** TODO Sort threads 
 
 *** Future
 **** TODO make spacy phrase finding cleaner by getting rid of numbers and common phrases
 **** TODO add engagement metrics, and display best threads at top
-***** other options for thread display, sort by newest, oldest, longest, shortest, most famous
 ** Storing data schemas
 *** DB of user
 store user id, keywords from all threads,
-
-*** DB of threads
-needs to be elasticsearch for speed
-each thread will have user id, text, keywords
 ** Frontend vision
-
 Just planning out how I want the actual frontend to let users do
 *** Main page should be a search engine to find threads for a topic
 **** will pull up user bio, main tweet, and section of tweet that is appropriate
