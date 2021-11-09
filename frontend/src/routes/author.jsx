@@ -1,7 +1,6 @@
+import { useParams } from "react-router-dom";
+
 export default function Author() {
-  return (
-    <main style={{ padding: "1rem 0" }}>
-      <h2>Author</h2>
-    </main>
-  )
+  let params = useParams();
+  return <h2>Invoice {params.authorName}</h2>;
 }
