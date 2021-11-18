@@ -16,6 +16,7 @@ class ProductionConfig(Config):
     def __init__(self):
 
         self.cluster = pymongo.MongoClient(os.getenv("MONGO_URI"))
+        self.database = self.cluster["Twitter"]
 
     def create_author_thread_db(self, author, threads):
         collection = self.cluster["threads"][author]
@@ -25,3 +26,14 @@ class ProductionConfig(Config):
     def create_author_data_db(self, author, data):
         collection = self.cluster["authors"]["info"]
         collection.insert(data)
+
+    def insert_threads(self, author, data):
+        collection = self.cluster["Twitter"]["threads"]
+        ids = [doc["_id"] for doc in data]
+        collection.delete_many({"_id": {"$in": ids}})
+        collection.insert_many(data)
+
+    def delete_threads(self, author):
+        collection = self.cluster["Twitter"]["threads"]
+        deleted_count = collection.delete_many({"author": author})
+        return deleted_count.deleted_count

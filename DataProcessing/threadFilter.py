@@ -39,8 +39,10 @@ class DataPrep:
         for doc, i in tqdm(self.nlp.pipe(intros, as_tuples=True)):
             t_full_text, t_ids = thread_tuples[i]
             final_data.append({
-                "root_id":
+                "_id":
                 str(t_ids[0]),
+                "author":
+                cur_user,
                 "text":
                 t_full_text,
                 "keywords":

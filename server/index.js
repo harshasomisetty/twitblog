@@ -11,7 +11,7 @@ require("dotenv").config({ path: "../.env" });
 MongoClient.connect(process.env.MONGO_URI, function (err, client) {
   assert.equal(null, err);
   console.log("Mongo Connected");
-  app.locals.threads = client.db("threads");
+  app.locals.twitter = client.db("Twitter");
   /* app.locals.authors = client.db('authors') */
 });
 

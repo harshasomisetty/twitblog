@@ -3,15 +3,28 @@ from threadFilter import thread_extraction_pipeline
 import mongoConfig
 from mongoConfig import ProductionConfig
 
-cur_user = "balajis"
-# cur_user = "VitruviusCurve"
-thread_length = 3
 
-threads = thread_extraction_pipeline(cur_user, thread_length)
-mongo = ProductionConfig()
-mongo.create_author_thread_db(cur_user, threads)
-print(threads[0])
-# with open("keywords.txt", "w+") as file:
-#     for thread in threads:
-#         file.write("\n".join(thread["keywords"]) + "\n*****\n\n")
-print("done")
+def load_all_data():
+    authors = ["VitruviusCurve", "balajis"]
+    thread_length = 3
+
+    for author in authors:
+        threads = thread_extraction_pipeline(author, thread_length)
+
+        # ProductionConfig().create_author_thread_db(cur_user, threads)
+        ProductionConfig().insert_threads(author, threads)
+        print(threads[0]["keywords"])
+
+        print("done", author)
+
+
+def delete_author_data(author):
+    deleted_count = ProductionConfig().delete_threads(author)
+    print("deleted", deleted_count)
+
+
+if __name__ == "__main__":
+    author = "VitruviusCurve"
+    # delete_author_data(author)
+
+    load_all_data()

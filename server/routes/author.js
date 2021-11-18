@@ -9,11 +9,11 @@ function getThreadLink(author, statusId) {
 router.get("/:author", async function (req, res) {
   const author = req.params.author;
   const ids = [];
-  const collection = req.app.locals.threads.collection(author);
+  const collection = req.app.locals.twitter.collection("threads");
 
   console.log(author);
 
-  const roots = await collection.find({});
+  const roots = await collection.find({ author: author });
   await roots.forEach(function (doc) {
     ids.push(getThreadLink(author, doc["keywords"]));
   });
