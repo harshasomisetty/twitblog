@@ -20,3 +20,5 @@ b
 /.env
 /DataProcessing/keywords.txt
 /server/test.html
+*.swo
+*.swp
