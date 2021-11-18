@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 
 function getThreadLink(author, statusId) {
-  return "https://twitter.com/" + author + "/status/" + statusId;
+  // return "https://twitter.com/" + author + "/status/" + statusId;
+  return statusId;
 }
 
 router.get("/:author", async function (req, res) {
@@ -14,11 +15,11 @@ router.get("/:author", async function (req, res) {
 
   const roots = await collection.find({});
   await roots.forEach(function (doc) {
-    ids.push(getThreadLink(author, doc["root_id"]));
+    ids.push(getThreadLink(author, doc["keywords"]));
   });
 
-  console.log(ids[0]);
-  res.send({ title: String(ids[0]) });
+  console.log(ids);
+  res.send({ statuses: ids, title: String(ids[0]) });
   /* res.send(ids.join("\n\n")) */
 });
 

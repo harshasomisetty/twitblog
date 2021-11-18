@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 const axios = require("axios");
 
 export default function Author() {
-  const [search, setSearch] = useState({ searchTerm: "" });
+  const [search, setSearch] = useState({ searchTerm: "", threads: [] });
   let params = useParams();
 
   useEffect(() => {
@@ -11,7 +11,9 @@ export default function Author() {
     console.log(url);
     axios
       .get(url)
-      .then((res) => setSearch({ searchTerm: res.data.title }))
+      .then((res) =>
+        setSearch({ searchTerm: res.data.title, threads: res.data.statuses })
+      )
       .catch(function (error) {
         console.log(error);
       })
@@ -21,5 +23,12 @@ export default function Author() {
 
     console.log(search);
   }, []);
-  return <p> {search.searchTerm} </p>;
+
+  return (
+    <div>
+      {search.threads.map((thread) => (
+        <p>{thread}</p>
+      ))}
+    </div>
+  );
 }
