@@ -18,6 +18,7 @@ MongoClient.connect(process.env.MONGO_URI, function (err, client) {
 const testAPIRouter = require("./routes/testAPI");
 const searchRouter = require("./routes/search");
 const authorRouter = require("./routes/author");
+const threadRouter = require("./routes/thread");
 
 app.get("/", function (req, res) {
   res.send("hi from express main post restruc");
@@ -26,6 +27,7 @@ app.get("/", function (req, res) {
 app.use("/testAPI", testAPIRouter);
 app.use("/search", searchRouter);
 app.use("/author", authorRouter);
+app.use("/thread", threadRouter);
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });

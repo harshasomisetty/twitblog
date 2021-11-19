@@ -32,8 +32,8 @@ class DataPrep:
     def prep_json_data(self, thread_tuples, cur_user, tweet_dict):
         final_data = []
 
-        intros = [[text[0].split("\n**********\n")[0], ind]
-                  for ind, text in enumerate(thread_tuples)]
+        intros = [[text[0][0], ind] for ind, text in enumerate(thread_tuples)]
+        print(intros[0])
         stopwords = self.nlp.Defaults.stop_words
         # multiprocess all thread intros to get a potential title
         for doc, i in tqdm(self.nlp.pipe(intros, as_tuples=True)):
@@ -174,10 +174,11 @@ def clean_threads(tweet_dict, thread_dict, thread_length: int):
     threads = []
     for root, t_ids in thread_dict.items():
         if len(t_ids) > thread_length:
-            text = ""
+            text = []
             for status in t_ids:
-                text += tweet_dict[status]["text"]
-                text += "\n\n**********\n\n"
+                text.append(
+                    tweet_dict[status]["text"].strip().rstrip("...").strip())
+                # text += "\n\n**********\n\n"
             threads.append([text, t_ids])
     return threads
 
