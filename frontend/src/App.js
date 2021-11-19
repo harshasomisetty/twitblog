@@ -9,7 +9,7 @@ export default function App() {
   const signup = () => {
     console.log(inputs);
     console.log("created %s", inputs.search_query);
-    navigate("/authors/" + inputs.search_query);
+    navigate("/author/" + inputs.search_query);
   };
 
   const { inputs, handleInputChange, handleSubmit } = useSignUpForm(signup);

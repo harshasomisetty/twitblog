@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 const axios = require("axios");
 
 export default function ThreadData() {
-  const [thread, setThread] = useState({ threadData: " klj" });
+  const [thread, setThread] = useState({ threadData: [" klj"] });
 
   let params = useParams();
 

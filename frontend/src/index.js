@@ -14,10 +14,10 @@ ReactDOM.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
-      <Route path="authors" element={<Authors />}>
+      <Route path="author" element={<Authors />}>
         <Route path=":authorName" element={<Author />} />
       </Route>
-      <Route path="threads" element={<Threads />}>
+      <Route path="thread" element={<Threads />}>
         <Route path=":rootThread" element={<ThreadData />} />
       </Route>
       <Route
