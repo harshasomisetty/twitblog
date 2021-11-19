@@ -29,7 +29,7 @@ class DataPrep:
         self.nlp = spacy.load("en_core_web_sm")
         self.nlp.add_pipe("textrank")
 
-    def prep_json_data(self, thread_tuples, cur_user):
+    def prep_json_data(self, thread_tuples, cur_user, tweet_dict):
         final_data = []
 
         intros = [[text[0].split("\n**********\n")[0], ind]
@@ -38,6 +38,7 @@ class DataPrep:
         # multiprocess all thread intros to get a potential title
         for doc, i in tqdm(self.nlp.pipe(intros, as_tuples=True)):
             t_full_text, t_ids = thread_tuples[i]
+
             final_data.append({
                 "_id":
                 str(t_ids[0]),
@@ -51,7 +52,9 @@ class DataPrep:
                     if phrase.text not in stopwords
                 ]),
                 "statuses":
-                thread_tuples[i][1]
+                thread_tuples[i][1],
+                "engagement":
+                tweet_dict[t_ids[0]]["public_metrics"],
             })
 
         # creating a dict of tweet id to info
@@ -84,6 +87,7 @@ def load_tweets(username: str, api):
         if tweets != -1:
             with open(tweet_location, "w+") as file:
                 json.dump(tweets, file, indent=1)
+        print("saved", username, "tweets")
     return get_tweet_dict(tweets)
 
 
@@ -203,7 +207,7 @@ def thread_extraction_pipeline(cur_user: str, thread_length: int):
     threads = clean_threads(tweet_dict, thread_dict,
                             3)  # attaches tweet test, stores thread ids
 
-    final_threads = DataPrep().prep_json_data(threads, cur_user)
+    final_threads = DataPrep().prep_json_data(threads, cur_user, tweet_dict)
     save_threads_json(final_threads, cur_user)
     print("got", str(len(threads)), "threads")
 

@@ -194,7 +194,8 @@ class TwitterAPI:
 
         if not tweet_fields:  # my default selected payload parameters
             tweet_fields = [
-                "created_at", "in_reply_to_user_id", "referenced_tweets"
+                "created_at", "in_reply_to_user_id", "referenced_tweets",
+                "public_metrics"
             ]
 
         url = self.endpoint2 + ('/tweets/search/all?max_results=' + str(cnt) +
@@ -202,12 +203,12 @@ class TwitterAPI:
                                 user_name + '&expansions=author_id' +
                                 '&tweet.fields=' + ','.join(tweet_fields) +
                                 '&user.fields=username,location')
-
+        req = requests.get(url, headers=self.bearer)
         try:
-            req = requests.get(url, headers=self.bearer)
             # return req
             data = req.json()["data"]
         except Exception as e:
+            print(req)
             raise e
 
         while "next_token" in req.json()["meta"]:
