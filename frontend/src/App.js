@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
 import useSignUpForm from "./hooks/searchHook.js";
 
-// const axios = require("axios");
 export default function App() {
   const navigate = useNavigate();
   const signup = () => {
-    console.log(inputs);
-    console.log("created %s", inputs.search_query);
     navigate("/author/" + inputs.search_query);
   };
 
@@ -20,7 +17,7 @@ export default function App() {
         <input
           type="search"
           name="search_query"
-          placeholder="Enter Query"
+          placeholder="Enter Author Name"
           onChange={handleInputChange}
           value={inputs.search}
         />

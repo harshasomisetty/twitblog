@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 
 const useSignUpForm = (callback) => {
+  // modifying state hook
   const [inputs, setInputs] = useState({});
 
+  // block update on just typing
   const handleSubmit = (event) => {
-    console.log("submit event");
     if (event) {
       event.preventDefault();
     }

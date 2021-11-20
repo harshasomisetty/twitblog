@@ -10,17 +10,12 @@ This is my attempt at using Twitter's API to convert a user's account into a ess
 I'll basically be using the MERN stack, as I realized later
 ** Plan
   Overall, the plan is to do all the tweet data processing in python, and store data in elasticsearc, and serve results using react
-*** Barebones [2/3]
-**** DONE Python to manage tweet data [2/2]
-***** DONE Algo to get main thread tweets
-***** DONE Make Titles of Threads keywords (find with spacy)
-**** DONE Mongo to store data and query [2/2]
-***** DONE Figure out schema
-***** DONE save json data with python
-**** TODO React to display Webpage [0/7]
-***** TODO display each thread in a clean card
-***** TODO Figure out nice UI
-
+*** Steps
+**** UI
+***** TODO Overall Theme
+***** TODO Each thread in new card
+***** TODO Sort author threads by engagement
+***** TODO 
 *** Future
 **** TODO make spacy phrase finding cleaner by getting rid of numbers and common phrases
 **** TODO add engagement metrics, and display best threads at top

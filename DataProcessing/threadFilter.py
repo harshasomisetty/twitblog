@@ -44,15 +44,13 @@ class DataPrep:
                 str(t_ids[0]),
                 "author":
                 cur_user,
-                "text":
-                t_full_text,
+                "tweets":
+                list(zip(t_full_text, [str(i) for i in thread_tuples[i][1]])),
                 "keywords":
                 ", ".join([
                     phrase.text for phrase in doc._.phrases[:5]
                     if phrase.text not in stopwords
                 ]),
-                "statuses":
-                thread_tuples[i][1],
                 "engagement":
                 tweet_dict[t_ids[0]]["public_metrics"],
             })

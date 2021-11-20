@@ -22,3 +22,4 @@ b
 /server/test.html
 *.swo
 *.swp
+/server/.env
