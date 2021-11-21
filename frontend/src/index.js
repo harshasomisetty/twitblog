@@ -20,6 +20,7 @@ ReactDOM.render(
       <Route path="thread" element={<Threads />}>
         <Route path=":rootThread" element={<Thread />} />
       </Route>
+
       <Route
         path="*"
         element={

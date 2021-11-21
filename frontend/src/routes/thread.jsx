@@ -13,10 +13,10 @@ export default function Thread() {
     return "https://twitter.com/" + author + "/status/" + id;
   }
 
-  useEffect(async () => {
+  useEffect(() => {
     const url = "http://localhost:5000/thread/" + params.rootThread;
 
-    await axios
+    axios
       .get(url)
       .then((res) =>
         setState({ threadData: res.data.threadData, tweets: res.data.tweets })
