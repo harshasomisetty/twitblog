@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App";
-
+import Home from "./routes/home";
 import Authors from "./routes/authors";
 import Author from "./routes/author";
 import Threads from "./routes/threads";
@@ -13,12 +13,14 @@ import "./index.css";
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="author" element={<Authors />}>
-        <Route path=":authorName" element={<Author />} />
-      </Route>
-      <Route path="thread" element={<Threads />}>
-        <Route path=":rootThread" element={<Thread />} />
+      <Route path="/" element={<App />}>
+        <Route index element={<Home />} />
+        <Route path="author" element={<Authors />}>
+          <Route path=":authorName" element={<Author />} />
+        </Route>
+        <Route path="thread" element={<Threads />}>
+          <Route path=":rootThread" element={<Thread />} />
+        </Route>
       </Route>
 
       <Route

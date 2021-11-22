@@ -20,7 +20,7 @@ const Search = () => {
         type="search"
         className="search-input"
         name="search_query"
-        placeholder="Enter Author Name"
+        placeholder="Search Author"
         onChange={handleInputChange}
         value={inputs.search}
       />

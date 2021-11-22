@@ -14,14 +14,20 @@ export default function Thread() {
   }
 
   useEffect(() => {
-    const url = "http://localhost:5000/thread/" + params.rootThread;
+    async function fetchData() {
+      const url = "http://localhost:5000/thread/" + params.rootThread;
 
-    axios
-      .get(url)
-      .then((res) =>
-        setState({ threadData: res.data.threadData, tweets: res.data.tweets })
-      );
-    setBusy(false);
+      await axios
+        .get(url)
+        .then((res) =>
+          setState({ threadData: res.data.threadData, tweets: res.data.tweets })
+        )
+        .catch(function (error) {
+          console.log(error);
+        });
+      setBusy(false);
+    }
+    fetchData();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (isBusy) return <p>loading</p>;

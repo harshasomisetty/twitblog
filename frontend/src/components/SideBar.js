@@ -1,4 +1,5 @@
 import { FaHome, FaHashtag } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const SideBar = () => {
   return (
@@ -7,8 +8,10 @@ const SideBar = () => {
       flex flex-col
       bg-primary text-secondary"
     >
-      <SideBarIcon icon={<FaHome size="28" />} />
-      <SideBarIcon icon={<FaHashtag size="28" />} />
+      <Link to="/">
+        <SideBarIcon icon={<FaHome size="28" />} text="Home" />
+      </Link>
+      <SideBarIcon icon={<FaHashtag size="28" />} text="Explore" />
     </div>
   );
 };
@@ -16,7 +19,7 @@ const SideBar = () => {
 const SideBarIcon = ({ icon, text = "tooltip 💡" }) => (
   <div className="sidebar-icon group">
     {icon}
-    <span class="sidebar-tooltip group-hover:scale-100">{text}</span>
+    <span className="sidebar-tooltip group-hover:scale-100">{text}</span>
   </div>
 );
 
