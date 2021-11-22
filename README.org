@@ -34,3 +34,5 @@ Used [[https://blog.patricktriest.com/text-search-docker-elasticsearch/][this vu
 For refactoring the app after solidifying my stack, I used [[https://www.section.io/engineering-education/build-and-dockerize-a-full-stack-react-app-with-nodejs-and-nginx/][this]] link. Also, [[https://tiangolo.medium.com/react-in-docker-with-nginx-built-with-multi-stage-docker-builds-including-testing-8cc49d6ec305][this link]] help directly build the app and push into nginx
 
 for making a database globally available, found express app.locals from [[I foun][here]]
+
+[[https://github.com/fireship-io/tailwind-dashboard/blob/main/src/index.css][This]] was amazing reference while figuring out tailwind

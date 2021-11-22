@@ -1,6 +1,8 @@
 import useSignUpForm from "../hooks/searchHook.js";
 import { useNavigate } from "react-router-dom";
 
+import { FaSearch } from "react-icons/fa";
+
 const Search = () => {
   const navigate = useNavigate();
   const signup = () => {
@@ -10,15 +12,18 @@ const Search = () => {
   const { inputs, handleInputChange, handleSubmit } = useSignUpForm(signup);
 
   return (
-    <form id="form" onSubmit={handleSubmit}>
+    <form id="form" onSubmit={handleSubmit} className="search">
+      <button type="submit">
+        <FaSearch size="18" className="text-secondary my-auto" />
+      </button>
       <input
         type="search"
+        className="search-input"
         name="search_query"
         placeholder="Enter Author Name"
         onChange={handleInputChange}
         value={inputs.search}
       />
-      <button type="submit">Search</button>
     </form>
   );
 };

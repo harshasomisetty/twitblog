@@ -1,16 +1,23 @@
+import { FaHome, FaHashtag } from "react-icons/fa";
+
 const SideBar = () => {
   return (
     <div
-      className=" top-0 left-0 w-16 m-0
-flex flex-col
-bg-gray-900 text-white shadow-lg"
+      className="relative h-screen top-0 left-0 w-16 m-0
+      flex flex-col
+      bg-primary text-secondary"
     >
-      <i>A</i>
-      <i>B</i>
-      <i>C</i>
-      <i>D</i>
+      <SideBarIcon icon={<FaHome size="28" />} />
+      <SideBarIcon icon={<FaHashtag size="28" />} />
     </div>
   );
 };
+
+const SideBarIcon = ({ icon, text = "tooltip 💡" }) => (
+  <div className="sidebar-icon group">
+    {icon}
+    <span class="sidebar-tooltip group-hover:scale-100">{text}</span>
+  </div>
+);
 
 export default SideBar;

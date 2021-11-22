@@ -9,9 +9,18 @@ export default function Author() {
   const [isBusy, setBusy] = useState(true);
 
   useEffect(() => {
-    const url = "http://localhost:5000/author/" + params.authorName;
-    axios.get(url).then((res) => setState({ tData: res.data }));
-    setBusy(false);
+    async function fetchData() {
+      const url = "http://localhost:5000/author/" + params.authorName;
+      await axios
+        .get(url)
+        .then((res) => setState({ tData: res.data }))
+        .catch(function (error) {
+          console.log(error);
+        });
+      setBusy(false);
+    }
+
+    fetchData();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const divStyle = {
