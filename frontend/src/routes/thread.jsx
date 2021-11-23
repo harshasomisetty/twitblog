@@ -46,7 +46,7 @@ function capitalizeSent(str) {
 }
 
 const MetaData = ({ data }) => (
-  <div>
+  <div className="border-2 border-indigo-60">
     <p>Author: {data.author}</p>
     <p>Keywords: {data.keywords}</p>
 
@@ -63,7 +63,7 @@ function getTweetLink(id, author) {
 }
 
 const ThreadText = ({ tweets, author }) => (
-  <div>
+  <div class="grid grid-cols-1 divide-y divide-yellow-500">
     {tweets.map((t) => (
       <div key={t[1]}>
         <a href={getTweetLink(t[1], author)}>{t[0]}</a>

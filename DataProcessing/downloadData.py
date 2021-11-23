@@ -4,8 +4,10 @@ import mongoConfig
 from mongoConfig import ProductionConfig
 
 
-def load_all_data():
-    authors = ["VitruviusCurve", "balajis"]
+def load_all_data(authors):
+    if not authors:
+        authors = ["VitruviusCurve", "balajis"]
+
     thread_length = 3
 
     for author in authors:
@@ -24,7 +26,7 @@ def delete_author_data(author):
 
 
 if __name__ == "__main__":
-    author = "VitruviusCurve"
+    authors = ["cloudy_cl"]
     # delete_author_data(author)
 
-    load_all_data()
+    load_all_data(authors)
