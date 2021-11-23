@@ -6,7 +6,7 @@ import RightSideBar from "./components/RightSideBar.jsx";
 
 export default function App() {
   return (
-    <div className="flex flex-row justify-between">
+    <div className="container text-white flex flex-row justify-between">
       <LeftSideBar />
       <Outlet />
       <RightSideBar />

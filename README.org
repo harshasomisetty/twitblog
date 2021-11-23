@@ -5,27 +5,22 @@
 ** Premise
 Twitter has so much information hidden in it's threads, but navigating them by topic is somewhat hard.
 
-This is my attempt at using Twitter's API to convert a user's account into a essentially a blog
+This is my attempt at using Twitter's API to convert a user's account into a essentially a blog, done with MERN stack
 
-I'll basically be using the MERN stack, as I realized later
 ** Plan
-  Overall, the plan is to do all the tweet data processing in python, and store data in elasticsearc, and serve results using react
 *** Steps
 **** UI
 ***** TODO Overall Theme
 ***** TODO Each thread in new card
 ***** TODO Sort author threads by engagement
-***** TODO update twitter data for users
-***** TODO author card with number of threads, main topics
-*** Future
-**** TODO make spacy phrase finding cleaner by getting rid of numbers and common phrases
-**** TODO add engagement metrics, and display best threads at top
-** Frontend vision
-Just planning out how I want the actual frontend to let users do
-*** Main page should be a search engine to find threads for a topic
-**** will pull up user bio, main tweet, and section of tweet that is appropriate
-*** Implement the [[https://www.threadsby.me/its/dickiebush][threads by me]] functionality, where you can go to a user and see all their threads
-**** this view will have a bunch of cards, Title on top
+***** TODO Main page lists highly engaged tweets in past with user bio, main tweet, keywords
+***** TODO author page with stats (number of threads, keywords and interests), and cards of all threads by topics
+****** TODO Link to podcasts
+**** Data
+***** TODO Naval how to get rich no keywords bug
+***** TODO Expand links
+***** TODO Auto Update Twitter data
+***** TODO get rid of numbers
 ** Other notes
 Used [[https://blog.patricktriest.com/text-search-docker-elasticsearch/][this vue and elastic tutorial]] and [[https://blog.logrocket.com/full-text-search-with-node-js-and-elasticsearch-on-docker/][this other tutorial]] to help figure out the MERN stack
 

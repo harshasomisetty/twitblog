@@ -29,7 +29,7 @@ export default function Thread() {
   if (isBusy) return <p>loading</p>;
   else {
     return (
-      <div>
+      <div className="flex flex-col justify-end">
         <MetaData data={state.threadData} />
         <ThreadText tweets={state.tweets} author={state.threadData.author} />
       </div>
@@ -37,8 +37,11 @@ export default function Thread() {
   }
 }
 
+function editSent(str) {
+  return str.replace("&gt;", ">").replace("&lt;", "<");
+}
 function capitalizeSent(str) {
-  const arr = str.replace("_", " ").split(" ");
+  const arr = editSent(str).replace("_", " ").split(" ");
   for (var i = 0; i < arr.length; i++) {
     arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
   }
@@ -46,15 +49,19 @@ function capitalizeSent(str) {
 }
 
 const MetaData = ({ data }) => (
-  <div classNa="border-2 border-indigo-60">
-    <p>Author: {data.author}</p>
-    <p>Keywords: {data.keywords}</p>
+  <div className="flex flex-row justify-around ">
+    <div className="rounded border-2 border-gray-400 p-2">
+      <p>Author: {data.author}</p>
+      <p>Keywords: {data.keywords}</p>
+    </div>
 
-    {Object.keys(data.engagement).map((key) => (
-      <p>
-        {capitalizeSent(key)}: {data.engagement[key]}
-      </p>
-    ))}
+    <div className="rounded border-2 border-gray-400 p-2">
+      {Object.keys(data.engagement).map((key) => (
+        <p>
+          {capitalizeSent(key)}: {data.engagement[key]}
+        </p>
+      ))}
+    </div>
   </div>
 );
 
@@ -63,10 +70,10 @@ function getTweetLink(id, author) {
 }
 
 const ThreadText = ({ tweets, author }) => (
-  <div class="grid grid-cols-1 divide-y divide-yellow-500">
+  <div className="grid grid-cols-1 divide-y divide-gray-500">
     {tweets.map((t) => (
-      <div key={t[1]}>
-        <a href={getTweetLink(t[1], author)}>{t[0]}</a>
+      <div key={t[1]} className=" mb-2">
+        <a href={getTweetLink(t[1], author)}>{editSent(t[0])}</a>
       </div>
     ))}
   </div>
