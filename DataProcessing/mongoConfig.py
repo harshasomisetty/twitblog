@@ -1,10 +1,11 @@
 import pymongo
 from pymongo import MongoClient
+from pymongo.errors import ConnectionFailure
 import urllib.parse
 from dotenv import load_dotenv
 import os
 
-load_dotenv("../.env")
+load_dotenv(".env")
 
 
 class Config(object):
@@ -16,6 +17,13 @@ class ProductionConfig(Config):
     def __init__(self):
 
         self.cluster = pymongo.MongoClient(os.getenv("MONGO_URI"))
+        try:
+            print("connecting to mongo")
+        except ConnectionFailure:
+            print("Server not available")
+        else:
+            print("connected to mongo")
+
         self.database = self.cluster["Twitter"]
 
     def create_author_thread_db(self, author, threads):
@@ -37,3 +45,8 @@ class ProductionConfig(Config):
         collection = self.cluster["Twitter"]["threads"]
         deleted_count = collection.delete_many({"author": author})
         return deleted_count.deleted_count
+
+    def list_authors(self):
+        collection = self.cluster["Twitter"]["threads"]
+        distinct = collection.distinct("author")
+        return distinct

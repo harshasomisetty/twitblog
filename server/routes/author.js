@@ -6,6 +6,13 @@ function getThreadLink(author, statusId) {
   return statusId;
 }
 
+router.get("/", async function (req, res) {
+  const collection = req.app.locals.twitter.collection("threads");
+  const distinct = await collection.distinct("author");
+
+  res.send({ authorList: distinct });
+});
+
 router.get("/:author", async function (req, res) {
   const author = req.params.author;
   const data = [];

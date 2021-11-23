@@ -1,15 +1,15 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import "./App.css";
-import SideBar from "./components/SideBar.js";
-import Search from "./components/Search.js";
+import LeftSideBar from "./components/LeftSideBar.js";
+import RightSideBar from "./components/RightSideBar.jsx";
 
 export default function App() {
   return (
     <div className="flex flex-row justify-between">
-      <SideBar />
+      <LeftSideBar />
       <Outlet />
-      <Search />
+      <RightSideBar />
     </div>
   );
 }

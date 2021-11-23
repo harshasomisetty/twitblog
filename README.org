@@ -15,13 +15,11 @@ I'll basically be using the MERN stack, as I realized later
 ***** TODO Overall Theme
 ***** TODO Each thread in new card
 ***** TODO Sort author threads by engagement
-***** TODO 
+***** TODO update twitter data for users
+***** TODO author card with number of threads, main topics
 *** Future
 **** TODO make spacy phrase finding cleaner by getting rid of numbers and common phrases
 **** TODO add engagement metrics, and display best threads at top
-** Storing data schemas
-*** DB of user
-store user id, keywords from all threads,
 ** Frontend vision
 Just planning out how I want the actual frontend to let users do
 *** Main page should be a search engine to find threads for a topic

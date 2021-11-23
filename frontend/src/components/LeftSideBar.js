@@ -1,7 +1,7 @@
 import { FaHome, FaHashtag } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const SideBar = () => {
+const LeftSideBar = () => {
   return (
     <div
       className="relative h-screen top-0 left-0 w-16 m-0
@@ -23,4 +23,4 @@ const SideBarIcon = ({ icon, text = "tooltip 💡" }) => (
   </div>
 );
 
-export default SideBar;
+export default LeftSideBar;

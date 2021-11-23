@@ -24,3 +24,4 @@ b
 *.swp
 *.bak
 /server/.env
+/DataProcessing/.env

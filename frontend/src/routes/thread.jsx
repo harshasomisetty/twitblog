@@ -24,7 +24,7 @@ export default function Thread() {
       setBusy(false);
     }
     fetchData();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [params]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (isBusy) return <p>loading</p>;
   else {
@@ -46,7 +46,7 @@ function capitalizeSent(str) {
 }
 
 const MetaData = ({ data }) => (
-  <div className="border-2 border-indigo-60">
+  <div classNa="border-2 border-indigo-60">
     <p>Author: {data.author}</p>
     <p>Keywords: {data.keywords}</p>
 

@@ -8,6 +8,7 @@ export default function Author() {
   const [state, setState] = useState();
   const [isBusy, setBusy] = useState(true);
 
+  console.log("new author1");
   useEffect(() => {
     async function fetchData() {
       const url = "http://localhost:5000/author/" + params.authorName;
@@ -19,16 +20,16 @@ export default function Author() {
         });
       setBusy(false);
     }
-
+    console.log("fetching author threads");
     fetchData();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [params]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const divStyle = {
     margintop: 20,
   };
-
+  console.log("new author2");
   if (isBusy) return <p>loading</p>;
-
+  console.log("new author3");
   return (
     <div>
       <p>{params.authorName}</p>
