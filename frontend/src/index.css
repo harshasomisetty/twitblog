@@ -11,11 +11,22 @@
 
 @layer components {
 
+  .main-display {
+    @apply container text-white
+    flex flex-row justify-between divide-x divide-gray-700
+  }
+  
+  .left-sidebar {
+    @apply relative h-screen max-w-xs
+    flex flex-col
+    bg-backgroundcol text-secondary
+  }
+
   .sidebar-icon {
     @apply relative flex items-center justify-center 
     h-12 w-12 mt-2 mb-2 mx-auto  
-    bg-gray-800 hover:bg-green-600 dark:bg-gray-800 
-    text-green-500 hover:text-white
+    bg-backgroundcol hover:bg-gray-600 dark:bg-gray-800 
+    text-white 
     rounded-3xl transition-all duration-300 ease-linear
     cursor-pointer shadow-lg ;
   }
@@ -30,7 +41,7 @@
 
   .search {
     @apply flex items-center justify-start 
-    bg-gray-400 dark:bg-gray-600
+    bg-gray-700 bg-opacity-50 dark:bg-gray-600
     text-gray-500
     px-2 h-9 w-auto ml-0 mr-2 mt-2
     rounded-full shadow-md

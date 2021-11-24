@@ -3,11 +3,7 @@ import { Link } from "react-router-dom";
 
 const LeftSideBar = () => {
   return (
-    <div
-      className="relative h-screen top-0 left-0 w-16 m-0
-      flex flex-col
-      bg-primary text-secondary"
-    >
+    <div className="left-sidebar">
       <Link to="/">
         <SideBarIcon icon={<FaHome size="28" />} text="Home" />
       </Link>

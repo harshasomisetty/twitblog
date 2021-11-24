@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import AuthorDisplay from "../components/AuthorDisplay.js";
+import Loading from "../components/Loading.js";
 const axios = require("axios");
 
 export default function Author() {
@@ -8,7 +10,6 @@ export default function Author() {
   const [state, setState] = useState();
   const [isBusy, setBusy] = useState(true);
 
-  console.log("new author1");
   useEffect(() => {
     async function fetchData() {
       const url = "http://localhost:5000/author/" + params.authorName;
@@ -20,24 +21,16 @@ export default function Author() {
         });
       setBusy(false);
     }
-    console.log("fetching author threads");
+
     fetchData();
   }, [params]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const divStyle = {
-    margintop: 20,
-  };
-  console.log("new author2");
-  if (isBusy) return <p>loading</p>;
-  console.log("new author3");
+  if (isBusy) return <Loading />;
+
   return (
-    <div>
-      <p>{params.authorName}</p>
-      {state.tData.threads.map((thread) => (
-        <div style={divStyle} key={thread["_id"]}>
-          <Link to={`/thread/${thread["_id"]}`}>{thread["keywords"]}</Link>
-        </div>
-      ))}
-    </div>
+    <AuthorDisplay
+      authorName={params.authorName}
+      threads={state.tData.threads}
+    />
   );
 }

@@ -1,11 +1,5 @@
-import { Outlet } from "react-router-dom";
+import PageFormat from "../components/PageFormat.js";
+
 export default function Threads() {
-  return (
-    <div>
-      <main style={{ padding: "1rem 0" }}>
-        <h2>Thread Page</h2>
-      </main>
-      <Outlet />
-    </div>
-  );
+  return <PageFormat Title="Thread Page" />;
 }

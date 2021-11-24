@@ -5,7 +5,7 @@ const axios = require("axios");
 
 const RightSideBar = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col max-w-7xl">
       <Search />
       <AuthorList />
     </div>
