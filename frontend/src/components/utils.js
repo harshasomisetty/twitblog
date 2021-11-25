@@ -1,5 +1,5 @@
 export function editSent(str) {
-  return str.replace("&gt;", ">").replace("&lt;", "<");
+  return str.replace("&gt;", ">").replace("&lt;", "<").replace("&amp;", "&");
 }
 
 export function capitalizeSent(str) {

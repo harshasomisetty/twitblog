@@ -5,7 +5,7 @@ const axios = require("axios");
 
 const RightSideBar = () => {
   return (
-    <div className="flex flex-col max-w-7xl">
+    <div className="relative h-screen flex flex-col w-max border-2 rounded-sm hidden lg:block">
       <Search />
       <AuthorList />
     </div>
@@ -25,9 +25,9 @@ const AuthorList = () => {
 
   return (
     <div>
-      <p>Current List of Twitter Authors</p>
+      <h3>Current List of Twitter Authors</h3>
       {authors.map((author, ind) => (
-        <div key={ind}>
+        <div key={ind} className="ml-3 mb-1">
           <Link to={`/author/${author}`}>{author}</Link>
         </div>
       ))}

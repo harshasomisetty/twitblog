@@ -21,7 +21,8 @@ const ThreadReader = ({ tweets, author }) => (
   <div className="grid grid-cols-1 divide-y divide-gray-700 p-1.5">
     {tweets.map((t) => (
       <div key={t[1]} className=" mb-2">
-        <a href={getTweetLink(t[1], author)}>{editSent(t[0])}</a>
+        {/* <a href={getTweetLink(t[1], author)}>{editSent(t[0])}</a> */}
+        <p>{editSent(t[0])}</p>
       </div>
     ))}
   </div>

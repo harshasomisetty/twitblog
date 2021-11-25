@@ -14,7 +14,7 @@ const Search = () => {
   return (
     <form id="form" onSubmit={handleSubmit} className="search">
       <button type="submit">
-        <FaSearch size="18" className="text-gray-500 my-auto" />
+        <FaSearch size="18" className="text-gray-500 font-extralight my-auto" />
       </button>
       <input
         type="search"

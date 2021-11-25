@@ -22,9 +22,9 @@ module.exports = {
       center: true,
       padding: "1rem",
       screens: {
-        lg: "1124px",
-        xl: "1124px",
-        "2xl": "1124px",
+        lg: "1000px",
+        xl: "1000px",
+        "2xl": "1000px",
       },
     },
   },
@@ -33,5 +33,5 @@ module.exports = {
       scale: ["active", "group-hover"],
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar-hide")],
 };
