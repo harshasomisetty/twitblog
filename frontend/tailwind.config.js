@@ -22,9 +22,9 @@ module.exports = {
       center: true,
       padding: "1rem",
       screens: {
-        lg: "1000px",
-        xl: "1000px",
-        "2xl": "1000px",
+        lg: "1250px",
+        xl: "1250px",
+        "2xl": "1250px",
       },
     },
   },
