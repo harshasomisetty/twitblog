@@ -6,9 +6,9 @@ from mongoConfig import ProductionConfig
 db = ProductionConfig()
 
 
-def load_all_data(authors):
+def load_all_data(authors=None):
     if not authors:
-        authors = ["VitruviusCurve", "balajis"]
+        authors = ["VitruviusCurve", "balajis", "naval", "cloudy_cl"]
 
     thread_length = 3
 
@@ -33,9 +33,9 @@ def test_mongo():
 
 
 if __name__ == "__main__":
-    authors = ["naval", "cloudy_cl"]
+    authors = ["naval"]
     # delete_author_data(author)
 
-    # load_all_data(authors)
+    load_all_data()
 
     test_mongo()

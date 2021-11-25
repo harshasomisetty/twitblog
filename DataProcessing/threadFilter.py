@@ -31,7 +31,7 @@ class DataPrep:
 
     def prep_json_data(self, thread_tuples, cur_user, tweet_dict):
         final_data = []
-
+        print(tweet_dict[list(tweet_dict.keys())[0]])
         intros = [[text[0][0], ind] for ind, text in enumerate(thread_tuples)]
         print(intros[0])
         stopwords = self.nlp.Defaults.stop_words
@@ -46,13 +46,16 @@ class DataPrep:
                 cur_user,
                 "tweets":
                 list(zip(t_full_text, [str(i) for i in thread_tuples[i][1]])),
-                "keywords":
-                ", ".join([
+                "keywords": [
                     phrase.text for phrase in doc._.phrases[:5]
                     if phrase.text not in stopwords
-                ]),
+                ],
                 "engagement":
                 tweet_dict[t_ids[0]]["public_metrics"],
+                "oldest_tweet":
+                tweet_dict[t_ids[0]]["created_at"],
+                "youngest_tweet":
+                tweet_dict[t_ids[-1]]["created_at"],
             })
 
         # creating a dict of tweet id to info
