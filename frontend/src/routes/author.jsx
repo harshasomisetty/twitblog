@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import AuthorDisplay from "../components/AuthorDisplay.js";
+
 import Loading from "../components/Loading.js";
 const axios = require("axios");
 
