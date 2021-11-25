@@ -5,7 +5,7 @@ const axios = require("axios");
 
 const RightSideBar = () => {
   return (
-    <div className="relative h-screen flex flex-col w-max border-2 rounded-sm hidden lg:block">
+    <div className="sticky top-0  h-screen flex flex-col w-max border-2 rounded-sm hidden lg:block">
       <Search />
       <AuthorList />
     </div>

@@ -7,7 +7,7 @@ import RightSideBar from "./components/RightSideBar.jsx";
 // divide-x divide-gray-700
 export default function App() {
   return (
-    <div className="container flex flex-row h-screen justify-center ">
+    <div className="container relative flex flex-row justify-betweenf">
       <LeftSideBar />
       <Outlet />
       <RightSideBar />

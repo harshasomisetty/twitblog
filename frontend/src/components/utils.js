@@ -13,3 +13,7 @@ export function capitalizeSent(str) {
 export function getTweetLink(id, author) {
   return "https://twitter.com/" + author + "/status/" + id;
 }
+
+export function getUserLink(author) {
+  return "https://twitter.com/" + author;
+}

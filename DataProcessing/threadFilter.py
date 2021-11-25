@@ -38,7 +38,10 @@ class DataPrep:
         # multiprocess all thread intros to get a potential title
         for doc, i in tqdm(self.nlp.pipe(intros, as_tuples=True)):
             t_full_text, t_ids = thread_tuples[i]
-
+            statistics = tweet_dict[t_ids[0]]["public_metrics"]
+            statistics["oldest_tweet"] = tweet_dict[t_ids[0]]["created_at"]
+            statistics["youngest_tweet"] = tweet_dict[t_ids[-1]]["created_at"]
+            statistics["thread_length"] = len(t_ids)
             final_data.append({
                 "_id":
                 str(t_ids[0]),
@@ -50,12 +53,8 @@ class DataPrep:
                     phrase.text for phrase in doc._.phrases[:5]
                     if phrase.text not in stopwords
                 ],
-                "engagement":
-                tweet_dict[t_ids[0]]["public_metrics"],
-                "oldest_tweet":
-                tweet_dict[t_ids[0]]["created_at"],
-                "youngest_tweet":
-                tweet_dict[t_ids[-1]]["created_at"],
+                "statistics":
+                statistics
             })
 
         # creating a dict of tweet id to info

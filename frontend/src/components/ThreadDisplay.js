@@ -8,9 +8,9 @@ const ThreadMetadata = ({ data }) => (
     </div>
 
     <div className="rounded border-2 border-gray-400 p-2">
-      {Object.keys(data.engagement).map((key) => (
+      {Object.keys(data.statistics).map((key) => (
         <p>
-          {capitalizeSent(key)}: {data.engagement[key]}
+          {capitalizeSent(key)}: {data.statistics[key]}
         </p>
       ))}
     </div>
@@ -20,16 +20,17 @@ const ThreadMetadata = ({ data }) => (
 const ThreadReader = ({ tweets, author }) => (
   <div className="grid grid-cols-1 divide-y divide-gray-700 p-1.5">
     {tweets.map((t) => (
-      <div key={t[1]} className=" mb-2">
-        {/* <a href={getTweetLink(t[1], author)}>{editSent(t[0])}</a> */}
-        <p>{editSent(t[0])}</p>
-      </div>
+      <a href={getTweetLink(t[1], author)}>
+        <div key={t[1]} className=" mb-2">
+          {editSent(t[0])}
+        </div>
+      </a>
     ))}
   </div>
 );
 
 const ThreadDisplay = ({ data, tweets, author }) => (
-  <div className="flex flex-col justify-end">
+  <div className="flex flex-col justify-between ">
     <ThreadMetadata data={data} />
     <ThreadReader tweets={tweets} author={author} />
   </div>
