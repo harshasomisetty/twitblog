@@ -10,15 +10,18 @@ This is my attempt at using Twitter's API to convert a user's account into a ess
 ** Plan
 *** Steps
 **** UI
-***** NEXT Sort author threads by engagement
-***** NEXT Each thread in new card
-***** TODO Main page lists highly engaged tweets in past with user bio, main tweet, keywords
-***** TODO author page with stats (number of threads, keywords and interests), and cards of all threads by topics
-****** TODO Link to podcasts
+***** NEXT Main page lists highly engaged tweets in past with user bio, main tweet, keywords
+***** TODO Beautify
+****** author page
+******* add more author data
+******* make thread cards
+****** Thread Page
+******* Better Spacing
+******* Better text formatting
 **** Data
 ***** NEXT Auto Update Twitter data
-***** TODO Naval how to get rich no keywords bug
-***** TODO Expand links
+***** NEXT Naval how to get rich no keywords bug
+***** NEXT Expand links
 ** Other notes
 Used [[https://blog.patricktriest.com/text-search-docker-elasticsearch/][this vue and elastic tutorial]] and [[https://blog.logrocket.com/full-text-search-with-node-js-and-elasticsearch-on-docker/][this other tutorial]] to help figure out the MERN stack
 

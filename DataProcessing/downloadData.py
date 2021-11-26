@@ -8,7 +8,9 @@ db = ProductionConfig()
 
 def load_all_data(authors=None):
     if not authors:
-        authors = ["VitruviusCurve", "balajis", "naval", "cloudy_cl"]
+        authors = [
+            "VitruviusCurve", "balajis", "naval", "cloudy_cl", "SBF_FTX"
+        ]
 
     thread_length = 3
 
