@@ -17,14 +17,14 @@ const ThreadMetadata = ({ data, tweets }) => {
     <div className="flex flex-row justify-around">
       <div className="flex flex-col space-y-3 rounded border-2 border-gray-400 p-2">
         <p>Author: {data.author}</p>
-        <p>Keywords: {data.keywords}</p>
+        <p>Keywords: {data.keywords.join(", ")}</p>
         <div>
           <button
             type="button"
             onClick={() => {
               Clickcopy(tweets.map((t) => t[0]).join("\n\n***\n\n"));
             }}
-            className="border-2 rounded px-2 py-1"
+            className="border-2 rounded p-2"
           >
             <div className="flex flex-row space-x-3">
               <IoCopyOutline
@@ -52,8 +52,8 @@ const ThreadReader = ({ tweets, author }) => (
   <div className="grid grid-cols-1 divide-y divide-gray-700 p-1.5">
     {tweets.map((t) => (
       <a href={getTweetLink(t[1], author)}>
-        <div key={t[1]} className=" mb-2">
-          {editSent(t[0])}
+        <div key={t[1]} className=" mb-2 p-2">
+          <p className="whitespace-pre-line">{editSent(t[0])}</p>
         </div>
       </a>
     ))}
