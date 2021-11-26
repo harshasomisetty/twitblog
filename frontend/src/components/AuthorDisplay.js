@@ -47,11 +47,11 @@ export default function AuthorDisplay({ authorName, threads }) {
       </a>
 
       <div className="flex flex-row space-x-3 items-stretch justify-around m-4">
-        <div className="flex flex-col border-2">
+        <div className="flex flex-col border-2 p-2">
           <p>Threads: {threads.length}</p>
           {/* <p>Topics: </p> */}
         </div>
-        <div className="flex flex-col border-2">
+        <div className="flex flex-col border-2 p-2">
           <Reverse reverse={reverse} setReverse={setReverse} />
           <Dropdown
             open={open}
@@ -64,17 +64,22 @@ export default function AuthorDisplay({ authorName, threads }) {
         </div>
       </div>
 
-      <div className="overflow-auto  scrollbar-hide">
-        {sortThreads().map((thread) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 m-5 overflow-auto scrollbar-hide">
+        {sortThreads().map((thread, ind) => (
           <div
             key={thread["_id"]}
-            className="mx-3 mb-1 rounded border-2 border-gray-600"
+            className="relative flex flex-row gap-2 items-center rounded border-2 border-gray-600 p-4 "
           >
-            <Link to={`/thread/${thread["_id"]}`}>
-              <p>length: {thread.statistics.thread_length}</p>
-              <p>likes: {thread.statistics.like_count}</p>
-              <p>keyWords: {thread.keywords[0]}</p>
-            </Link>
+            <div className="border-2 border-gray-700">
+              <p>{ind + 1}</p>
+            </div>
+            <div className="border-2 border-gray-700">
+              <Link to={`/thread/${thread["_id"]}`}>
+                <p>length: {thread.statistics.thread_length}</p>
+                <p>likes: {thread.statistics.like_count}</p>
+                <p>keyWords: {thread.keywords[0]}</p>
+              </Link>
+            </div>
           </div>
         ))}
       </div>
