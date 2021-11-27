@@ -19,7 +19,6 @@ def load_all_data(authors=None):
 
         # ProductionConfig().create_author_thread_db(cur_user, threads)
         db.insert_threads(author, threads)
-        print(threads[0]["keywords"])
 
         print("done", author)
 
@@ -35,9 +34,10 @@ def test_mongo():
 
 
 if __name__ == "__main__":
-    authors = ["naval"]
+    authors = []
+    # authors = ["naval"]
     # delete_author_data(author)
 
-    load_all_data()
+    load_all_data(authors)
 
-    test_mongo()
+    # test_mongo()

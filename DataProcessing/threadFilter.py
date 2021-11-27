@@ -42,7 +42,7 @@ class DataPrep:
             statistics["oldest_tweet"] = tweet_dict[t_ids[0]]["created_at"]
             statistics["youngest_tweet"] = tweet_dict[t_ids[-1]]["created_at"]
             statistics["thread_length"] = len(t_ids)
-            final_data.append({
+            thread_obj = {
                 "_id":
                 str(t_ids[0]),
                 "author":
@@ -55,10 +55,35 @@ class DataPrep:
                 ],
                 "statistics":
                 statistics
-            })
+            }
+            thread_obj["title"] = title_gen(thread_obj, doc)
+
+            final_data.append(thread_obj)
 
         # creating a dict of tweet id to info
         return final_data
+
+
+def title_gen(obj, doc):
+    first_tweet = obj["tweets"][0][0]
+    first_sentence = str(list(doc.sents)[0])
+
+    if len(first_tweet.split(" ")) < 10:
+        finalSent = first_tweet
+    if len(first_sentence.split(" ")) < 11:
+        finalSent = first_sentence
+    else:
+        return ""
+
+    firstPart = finalSent.split(" ")[0]
+    lastPart = finalSent.split(" ")[-1]
+    if firstPart == "1/" or firstPart == "/1":
+        finalSent = finalSent[3:]
+
+    if lastPart == "1/" or lastPart == "/1":
+        finalSent = finalSent[:-2]
+
+    return finalSent
 
 
 # converts list of json tweet list into dict
@@ -209,6 +234,7 @@ def thread_extraction_pipeline(cur_user: str, thread_length: int):
                             3)  # attaches tweet test, stores thread ids
 
     final_threads = DataPrep().prep_json_data(threads, cur_user, tweet_dict)
+    print(final_threads[0]["title"])
     save_threads_json(final_threads, cur_user)
     print("got", str(len(threads)), "threads")
 

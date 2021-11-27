@@ -1,19 +1,19 @@
 
 # Table of Contents
 
-1.  [Twitter to Blog](#org8a2d0cc)
-    1.  [Premise](#org9696a56)
-    2.  [Plan](#org928d77b)
-        1.  [Steps](#org904afdd)
-    3.  [Other notes](#orgea8caaa)
+1.  [Twitter to Blog](#org43c578e)
+    1.  [Premise](#orgb554ccd)
+    2.  [Plan](#org0b6a65b)
+        1.  [Steps](#org3e191f5)
+    3.  [Other notes](#org5036197)
 
 
-<a id="org8a2d0cc"></a>
+<a id="org43c578e"></a>
 
 # Twitter to Blog
 
 
-<a id="org9696a56"></a>
+<a id="orgb554ccd"></a>
 
 ## Premise
 
@@ -22,12 +22,12 @@ Twitter has so much information hidden in it's threads, but navigating them by t
 This is my attempt at using Twitter's API o convert a user's account into a essentially a blog, done with MERN stack
 
 
-<a id="org928d77b"></a>
+<a id="org0b6a65b"></a>
 
 ## Plan
 
 
-<a id="org904afdd"></a>
+<a id="org3e191f5"></a>
 
 ### Steps
 
@@ -52,6 +52,8 @@ This is my attempt at using Twitter's API o convert a user's account into a esse
                 2.  main topics
             
             2.  make thread cards
+            
+            3.  Title formatting, adding a summary in thread card
         
         2.  Thread Page
         
@@ -72,7 +74,7 @@ This is my attempt at using Twitter's API o convert a user's account into a esse
         1.  NEXT Naval how to get rich no keywords bug
 
 
-<a id="orgea8caaa"></a>
+<a id="org5036197"></a>
 
 ## Other notes
 

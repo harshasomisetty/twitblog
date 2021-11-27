@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import { getUserLink } from "./utils.js";
 
 const sortTypes = {
-  "Thread Length": "thread_length",
   Likes: "like_count",
+  "Thread Length": "thread_length",
   Retweets: "retweet_count",
   Replies: "reply_count",
   Quotes: "quote_count",
@@ -66,21 +66,26 @@ export default function AuthorDisplay({ authorName, threads }) {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 m-5 overflow-auto scrollbar-hide">
         {sortThreads().map((thread, ind) => (
-          <div
-            key={thread["_id"]}
-            className="relative flex flex-row gap-2 items-center rounded border-2 border-gray-600 p-4 "
-          >
-            <div className="border-2 border-gray-700">
-              <p>{ind + 1}</p>
-            </div>
-            <div className="border-2 border-gray-700">
-              <Link to={`/thread/${thread["_id"]}`}>
+          <Link to={`/thread/${thread["_id"]}`}>
+            <div
+              key={thread["_id"]}
+              className="relative flex flex-row gap-2 items-center rounded border-2 border-gray-600 p-4 "
+            >
+              <div className="border-2 border-gray-700">
+                <p>{ind + 1}</p>
+              </div>
+              <div className="border-2 border-gray-700">
+                {thread.title ? (
+                  <p>title: {thread.title}</p>
+                ) : (
+                  <p>keywords: {thread.keywords.join(", ")}</p>
+                )}
+
                 <p>length: {thread.statistics.thread_length}</p>
                 <p>likes: {thread.statistics.like_count}</p>
-                <p>keyWords: {thread.keywords[0]}</p>
-              </Link>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
@@ -117,7 +122,7 @@ function Dropdown(props) {
     <div
       tabIndex={1}
       onBlur={(e) => props.setOpen(false)}
-      className="focus:outline-none"
+      className="focus:outline-none z-50"
     >
       <button
         type="button"
