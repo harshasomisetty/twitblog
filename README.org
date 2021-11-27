@@ -10,9 +10,6 @@ This is my attempt at using Twitter's API o convert a user's account into a esse
 ** Plan
 *** Steps
 **** UI
-***** NEXT Main page lists highly engaged tweets in past with user bio, main tweet, keywords
-***** TODO Back button to save preferences
-***** TODO Search Page with advanced options
 ***** TODO search threads in author page
 ***** TODO Beautify
 ****** author page
@@ -24,16 +21,18 @@ This is my attempt at using Twitter's API o convert a user's account into a esse
 ****** Thread Page
 ******* Better text formatting and font
 ***** TODO Reccomendations
-***** right sidebar width constant
 **** Data
 ***** NEXT Auto Update Twitter data
 ***** TODO limit how much data is sent
 ***** TODO index to query date
-****** 
 ***** NEXT Expand links
 ***** TODO summarize
 ***** TODO better keywords
 ****** NEXT Naval how to get rich no keywords bug
+**** Future
+***** right sidebar width constant
+***** TODO Search Page with advanced options
+
 ** Other notes
 Used [[https://blog.patricktriest.com/text-search-docker-elasticsearch/][this vue and elastic tutorial]] and [[https://blog.logrocket.com/full-text-search-with-node-js-and-elasticsearch-on-docker/][this other tutorial]] to help figure out the MERN stack
 
