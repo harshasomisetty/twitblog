@@ -8,12 +8,7 @@ import os
 load_dotenv(".env")
 
 
-class Config(object):
-    DEBUG = False
-    TESTING = False
-
-
-class ProductionConfig(Config):
+class Config():
     def __init__(self):
 
         self.cluster = pymongo.MongoClient(os.getenv("MONGO_URI"))

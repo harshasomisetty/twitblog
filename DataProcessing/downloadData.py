@@ -1,9 +1,9 @@
 import threadFilter
 from threadFilter import thread_extraction_pipeline
 import mongoConfig
-from mongoConfig import ProductionConfig
+from mongoConfig import Config
 
-db = ProductionConfig()
+db = Config()
 
 
 def load_all_data(authors=None):
