@@ -2,12 +2,11 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import "./App.css";
 import LeftSideBar from "./components/LeftSideBar.js";
-import RightSideBar from "./components/RightSideBar.jsx";
+import RightSideBar from "./components/RightSideBar.js";
 
-// divide-x divide-gray-700
 export default function App() {
   return (
-    <div className="container relative flex flex-row justify-betweenf">
+    <div className="container relative flex flex-row justify-between">
       <LeftSideBar />
       <Outlet />
       <RightSideBar />

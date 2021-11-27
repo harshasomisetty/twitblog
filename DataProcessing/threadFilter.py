@@ -7,7 +7,7 @@ import spacy
 import pytextrank
 import twitterApi
 from twitterApi import TwitterAPI
-
+import dateutil.parser as dp
 import configparser
 
 config = configparser.ConfigParser(interpolation=None)
@@ -39,8 +39,12 @@ class DataPrep:
         for doc, i in tqdm(self.nlp.pipe(intros, as_tuples=True)):
             t_full_text, t_ids = thread_tuples[i]
             statistics = tweet_dict[t_ids[0]]["public_metrics"]
-            statistics["oldest_tweet"] = tweet_dict[t_ids[0]]["created_at"]
-            statistics["youngest_tweet"] = tweet_dict[t_ids[-1]]["created_at"]
+            statistics["oldest_tweet"] = int(
+                dp.parse(tweet_dict[t_ids[0]]["created_at"][:-1]).timestamp())
+
+            statistics["youngest_tweet"] = int(
+                dp.parse(tweet_dict[t_ids[-1]]["created_at"][:-1]).timestamp())
+
             statistics["thread_length"] = len(t_ids)
             thread_obj = {
                 "_id":
@@ -57,7 +61,8 @@ class DataPrep:
                 statistics
             }
             thread_obj["title"] = title_gen(thread_obj, doc)
-
+            thread_obj["test"] = int(
+                dp.parse(tweet_dict[t_ids[0]]["created_at"][:-1]).timestamp())
             final_data.append(thread_obj)
 
         # creating a dict of tweet id to info

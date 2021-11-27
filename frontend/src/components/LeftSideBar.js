@@ -11,7 +11,9 @@ const LeftSideBar = () => {
       <Link to="/">
         <SideBarIcon icon={<FaHome size="28" />} text="Home" />
       </Link>
-      <SideBarIcon icon={<FaHashtag size="28" />} text="Explore" />
+      <Link to="/explore">
+        <SideBarIcon icon={<FaHashtag size="28" />} text="Explore" />
+      </Link>
     </div>
   );
 };

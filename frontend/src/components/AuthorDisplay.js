@@ -1,18 +1,8 @@
 import React, { useState } from "react";
 import { CgSortAz, CgSortZa } from "react-icons/cg";
-import { IoIosArrowDropdownCircle } from "react-icons/io";
-import { Link } from "react-router-dom";
-import { getUserLink } from "./utils.js";
-
-const sortTypes = {
-  Likes: "like_count",
-  "Thread Length": "thread_length",
-  Retweets: "retweet_count",
-  Replies: "reply_count",
-  Quotes: "quote_count",
-  "Oldest Start": "oldest_tweet",
-  "Recently Updated": "youngest_tweet",
-};
+import { getUserLink, sortTypes } from "./utils.js";
+import Dropdown from "./Dropdown.js";
+import ThreadList from "./ThreadList.js";
 
 export default function AuthorDisplay({ authorName, threads }) {
   const [sortType, setSortType] = useState(Object.keys(sortTypes)[0]);
@@ -64,30 +54,7 @@ export default function AuthorDisplay({ authorName, threads }) {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 m-5 overflow-auto scrollbar-hide">
-        {sortThreads().map((thread, ind) => (
-          <Link to={`/thread/${thread["_id"]}`}>
-            <div
-              key={thread["_id"]}
-              className="relative flex flex-row gap-2 items-center rounded border-2 border-gray-600 p-4 "
-            >
-              <div className="border-2 border-gray-700">
-                <p>{ind + 1}</p>
-              </div>
-              <div className="border-2 border-gray-700">
-                {thread.title ? (
-                  <p>title: {thread.title}</p>
-                ) : (
-                  <p>keywords: {thread.keywords.join(", ")}</p>
-                )}
-
-                <p>length: {thread.statistics.thread_length}</p>
-                <p>likes: {thread.statistics.like_count}</p>
-              </div>
-            </div>
-          </Link>
-        ))}
-      </div>
+      <ThreadList threads={sortThreads()} />
     </div>
   );
 }
@@ -114,41 +81,5 @@ function Reverse(props) {
         </div>
       )}
     </button>
-  );
-}
-
-function Dropdown(props) {
-  return (
-    <div
-      tabIndex={1}
-      onBlur={(e) => props.setOpen(false)}
-      className="focus:outline-none z-50"
-    >
-      <button
-        type="button"
-        onClick={() => props.setOpen(!props.open)}
-        className="flex flex-row space-x-1"
-      >
-        <p>Sort Threads</p>
-
-        <IoIosArrowDropdownCircle
-          size="18"
-          className="text-gray-500 font-extralight my-auto"
-        />
-      </button>
-      {props.open && (
-        <div className="absolute flex flex-col bg-backgroundcol rounded border-2 border-white overflow-hidden p-1 shadow-2xl">
-          {Object.keys(sortTypes).map((type, i) => (
-            <button
-              key={i}
-              onClick={() => props.onChange(type)}
-              className="flex items-start p-2 hover:bg-gray-500 border-2 border-gray-700"
-            >
-              <p>{type}</p>
-            </button>
-          ))}
-        </div>
-      )}
-    </div>
   );
 }

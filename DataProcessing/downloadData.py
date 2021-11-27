@@ -35,7 +35,7 @@ def test_mongo():
 
 if __name__ == "__main__":
     authors = []
-    # authors = ["naval"]
+
     # delete_author_data(author)
 
     load_all_data(authors)

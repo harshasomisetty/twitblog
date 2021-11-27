@@ -24,8 +24,12 @@ This is my attempt at using Twitter's API o convert a user's account into a esse
 ****** Thread Page
 ******* Better text formatting and font
 ***** TODO Reccomendations
+***** right sidebar width constant
 **** Data
 ***** NEXT Auto Update Twitter data
+***** TODO limit how much data is sent
+***** TODO index to query date
+****** 
 ***** NEXT Expand links
 ***** TODO summarize
 ***** TODO better keywords

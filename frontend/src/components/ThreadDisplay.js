@@ -1,40 +1,13 @@
 import { editSent, capitalizeSent, getTweetLink } from "./utils.js";
-import { IoCopyOutline } from "react-icons/io5";
-import { positions, Provider } from "react-alert";
-import { useAlert } from "react-alert";
+import CopyButton from "./CopyTextButton.js";
 
 const ThreadMetadata = ({ data, tweets }) => {
-  const alert = useAlert();
-  function Clickcopy(text) {
-    alert.success("Copied Text", {
-      timeout: 2000,
-      position: positions.TOP_CENTER,
-    });
-
-    navigator.clipboard.writeText(text);
-  }
   return (
     <div className="flex flex-row justify-around">
       <div className="flex flex-col space-y-3 rounded border-2 border-gray-400 p-2">
         <p>Author: {data.author}</p>
         <p>Keywords: {data.keywords.join(", ")}</p>
-        <div>
-          <button
-            type="button"
-            onClick={() => {
-              Clickcopy(tweets.map((t) => t[0]).join("\n\n***\n\n"));
-            }}
-            className="border-2 rounded p-2"
-          >
-            <div className="flex flex-row space-x-3">
-              <IoCopyOutline
-                size="18"
-                className="text-gray-500 font-extralight my-auto"
-              />
-              <p>Copy Thread</p>
-            </div>
-          </button>
-        </div>
+        <CopyButton tweets={tweets} />
       </div>
 
       <div className="rounded border-2 border-gray-400 p-2">

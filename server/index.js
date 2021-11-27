@@ -17,10 +17,12 @@ MongoClient.connect(process.env.MONGO_URI, function (err, client) {
 const searchRouter = require("./routes/search");
 const authorRouter = require("./routes/author");
 const threadRouter = require("./routes/thread");
+const latestRouter = require("./routes/latest");
 
 app.use("/search", searchRouter);
 app.use("/author", authorRouter);
 app.use("/thread", threadRouter);
+app.use("/latest", latestRouter);
 
 app.get("/", function (req, res) {
   res.send("Express Backend! ");

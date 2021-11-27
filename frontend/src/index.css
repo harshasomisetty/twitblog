@@ -30,10 +30,10 @@
   
   .search {
     @apply
-    flex items-center justify-start
-    bg-gray-700 bg-opacity-50 
-    text-gray-500 p-6 h-11 w-72 m-3
-    rounded-full shadow-md transition duration-300 ease-in-out
+    flex flex-row items-center justify-start
+    bg-gray-700 bg-opacity-50 text-gray-500
+    p-6 h-11 m-3 rounded-full shadow-md
+    transition duration-300 ease-in-out
   }
 
   .search-input {
