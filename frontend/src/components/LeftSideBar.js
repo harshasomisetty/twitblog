@@ -22,7 +22,9 @@ const SideBarIcon = ({ icon, text = "tooltip 💡" }) => (
   <div className="relative flex flex-row items-center space-x-3 justify-start h-12 mx-4  my-2 p-2 text-white hover:bg-gray-600 dark:bg-gray-800 rounded-3xl transition-all duration-300 ease-linear cursor-pointer group">
     <div>{icon}</div>
     <p className="hidden xl:block">{text}</p>
-    <span className="sidebar-tooltip group-hover:scale-100">{text}</span>
+    <span className="sidebar-tooltip group-hover:scale-100 xl:group-hover:scale-0">
+      {text}
+    </span>
   </div>
 );
 

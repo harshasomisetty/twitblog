@@ -22,7 +22,7 @@
 @layer components {
   
   .sidebar-tooltip {
-    @apply absolute w-auto p-2 m-2 min-w-max left-14 rounded-md shadow-md
+    @apply absolute w-auto p-2 m-2 min-w-max top-5 rounded-md shadow-md
     text-white text-xs bg-black 
     transition-all duration-100 origin-left
     transform scale-0;

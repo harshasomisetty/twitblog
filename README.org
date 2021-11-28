@@ -8,6 +8,11 @@ Twitter has so much information hidden in it's threads, but navigating them by t
 This is my attempt at using Twitter's API o convert a user's account into a essentially a blog, done with MERN stack
 
 ** Plan
+load all data into sqlite
+write methods to query until latest tweet
+add nginx to docker
+finalize docker
+deploy to google [[https://cloud.google.com/run/][cloud]]
 *** Steps
 **** UI
 ***** TODO search threads in author page
@@ -25,7 +30,7 @@ This is my attempt at using Twitter's API o convert a user's account into a esse
 ***** NEXT Auto Update Twitter data
 ***** TODO limit how much data is sent
 ***** TODO index to query date
-***** NEXT Expand links
+***** TODO Expand links
 ***** TODO summarize
 ***** TODO better keywords
 ****** NEXT Naval how to get rich no keywords bug
