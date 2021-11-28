@@ -18,6 +18,7 @@ def load_all_data(authors=None):
         threads = thread_extraction_pipeline(author, thread_length)
 
         # ProductionConfig().create_author_thread_db(cur_user, threads)
+
         db.insert_threads(author, threads)
 
         print("done", author)
@@ -34,7 +35,7 @@ def test_mongo():
 
 
 if __name__ == "__main__":
-    authors = []
+    authors = ["cloudy_cl"]
 
     # delete_author_data(author)
 
