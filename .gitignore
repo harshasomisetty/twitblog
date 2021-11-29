@@ -5,6 +5,8 @@ TData/
 node_modules/
 a
 b
+p
+d
 
 *.swo
 *.swp

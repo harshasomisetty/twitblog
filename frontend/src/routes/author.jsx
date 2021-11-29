@@ -10,23 +10,29 @@ export default function Author() {
 
   const [state, setState] = useState();
   const [isBusy, setBusy] = useState(true);
+  const [error, setError] = useState();
 
   useEffect(() => {
     async function fetchData() {
       const url = "http://localhost:5000/author/" + params.authorName;
       await axios
         .get(url)
-        .then((res) => setState({ tData: res.data }))
-        .catch(function (error) {
-          console.log(error);
+        .then((res) => {
+          if (res.status !== 200) {
+            throw Error("Data currently not available");
+          }
+          setState({ tData: res.data });
+          setBusy(false);
+        })
+        .catch((err) => {
+          setError(err.message);
         });
-      setBusy(false);
     }
 
     fetchData();
   }, [params]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (isBusy) return <Loading />;
+  if (isBusy) return <Loading error={error} />;
 
   return (
     <AuthorDisplay

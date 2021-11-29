@@ -1,8 +1,8 @@
 import ReactLoading from "react-loading";
 
-const Loading = () => (
+const Loading = ({ error = "" }) => (
   <div className="flex justify-center items-center">
-    <ReactLoading type="spokes" />
+    {!error ? <ReactLoading type="spokes" /> : <p>{error}</p>}
   </div>
 );
 

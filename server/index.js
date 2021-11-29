@@ -9,6 +9,9 @@ var MongoClient = require("mongodb").MongoClient;
 require("dotenv").config({ path: ".env" });
 
 MongoClient.connect(process.env.MONGO_URI, function (err, client) {
+  console.log("test");
+  console.log(process.env.HOSTNAME);
+  console.log(process.env.MONGO_URI);
   assert.equal(null, err);
   console.log("Mongo Connected");
   app.locals.twitter = client.db("Twitter");

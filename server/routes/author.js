@@ -25,7 +25,6 @@ router.get("/:author", async function (req, res) {
     data.push(doc);
   });
 
-  console.log(data[0]);
   res.send({ threads: data });
 });
 

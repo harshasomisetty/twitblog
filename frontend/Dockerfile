@@ -16,6 +16,9 @@ FROM nginx
 
 EXPOSE 3000
 
+
+LABEL org.opencontainers.image.source https://github.com/harshasomisetty/TwitBlog
+
 COPY --from=build-stage /app/build /usr/share/nginx/html
 
 COPY --from=build-stage /app/default.conf /etc/nginx/conf.d/default.conf

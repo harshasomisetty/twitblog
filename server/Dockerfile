@@ -1,5 +1,7 @@
 FROM node:12.18.1
 
+LABEL org.opencontainers.image.source https://github.com/harshasomisetty/TwitBlog
+
 WORKDIR /app
 
 COPY package*.json ./

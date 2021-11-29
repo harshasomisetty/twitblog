@@ -6,6 +6,7 @@ const axios = require("axios");
 export default function Latest() {
   const [state, setState] = useState();
   const [isBusy, setBusy] = useState(true);
+  const [error, setError] = useState();
 
   useEffect(() => {
     async function fetchData() {
@@ -13,16 +14,22 @@ export default function Latest() {
 
       await axios
         .get(url)
-        .then((res) => setState({ threadData: res.data.threadData }))
-        .catch(function (error) {
-          console.log(error);
+        .then((res) => {
+          if (res.status !== 200) {
+            throw Error("Data currently not available");
+          }
+          setState({ threadData: res.data.threadData });
+          setBusy(false);
+        })
+        .catch((err) => {
+          console.log("error");
+          setError(err.message);
         });
-      setBusy(false);
     }
     fetchData();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (isBusy) return <Loading />;
+  if (isBusy) return <Loading error={error} />;
   else {
     return <LatestDisplay threadData={state.threadData} />;
   }

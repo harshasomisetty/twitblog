@@ -2,24 +2,23 @@ version: '3.9'
 services:
   server: 
     container_name: Twit-server
+    # image: ghcr.io/harshasomisetty/twit_server
+    image: twitcontainer.azurecr.io/twit_server
     build:
       context: ./server
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
-    volumes:
-      - .:/usr/src/app/data
     networks:
       - app-net
 
   frontend:
     container_name: Twit-frontend
+    # image: ghcr.io/harshasomisetty/twit_frontend
+    image: twitcontainer.azurecr.io/twit_frontend
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    volumes:
-      - /app/node_modules
-      - ./client:/app
     depends_on:
       - server
     ports:

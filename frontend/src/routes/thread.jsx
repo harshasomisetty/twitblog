@@ -10,6 +10,7 @@ export default function Thread() {
 
   const [state, setState] = useState();
   const [isBusy, setBusy] = useState(true);
+  const [error, setError] = useState();
 
   useEffect(() => {
     async function fetchData() {
@@ -17,18 +18,24 @@ export default function Thread() {
 
       await axios
         .get(url)
-        .then((res) =>
-          setState({ threadData: res.data.threadData, tweets: res.data.tweets })
-        )
-        .catch(function (error) {
-          console.log(error);
+        .then((res) => {
+          if (res.status !== 200) {
+            throw Error("Data currently not available");
+          }
+          setState({
+            threadData: res.data.threadData,
+            tweets: res.data.tweets,
+          });
+          setBusy(false);
+        })
+        .catch((err) => {
+          setError(err.message);
         });
-      setBusy(false);
     }
     fetchData();
   }, [params]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (isBusy) return <Loading />;
+  if (isBusy) return <Loading error={error} />;
   else {
     return (
       <ThreadDisplay
