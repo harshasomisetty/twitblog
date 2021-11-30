@@ -6,10 +6,14 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 
 var MongoClient = require("mongodb").MongoClient;
+require("dotenv").config({ path: ".env" });
 
-MongoClient.connect(process.env.MONGO_URI, function (err, client) {
+const database =
+  process.env.MONGO_URI ||
+  "mongodb+srv://admin:B4ldr1c71@cluster0.apaqs.mongodb.net/TwitBlog?retryWrites=true&w=majority";
+
+MongoClient.connect(database, function (err, client) {
   assert.equal(null, err);
-  console.log("Mongo Connected");
   app.locals.twitter = client.db("Twitter");
 });
 
