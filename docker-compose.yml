@@ -11,9 +11,9 @@ services:
     networks:
       - app-net
     mem_limit: 50m
-    env_file:
-      - ./server/.env
-      
+    environment:
+      - MONGO_URI=$MONGO_URI
+  
   frontend:
     container_name: Twit-frontend
     image: ghcr.io/harshasomisetty/twit_frontend
@@ -27,6 +27,7 @@ services:
     networks:
       - app-net
     mem_limit: 50m
-        
+    profiles:
+      - donotstart
 networks:
   app-net:

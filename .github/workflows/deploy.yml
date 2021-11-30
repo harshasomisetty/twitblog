@@ -4,36 +4,43 @@ on:
   push:
     branches: 
       - deploy
+
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  AZURE_WEBAPP_NAME: twitblog
-  AZURE_WEBAPP_PACKAGE_PATH: '.'
   NODE_VERSION: '12.x'
+  NODE_ENV: production
+  MONGO_URI: ${{ secrets.MONGO_URI }}
 
 jobs:
   build-and-deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
-    environment: production
 
     steps:
       - name: 'checkout git action'
         uses: actions/checkout@v2
-          
-      - name: env setupfile
-        run: echo ${{ secrets.MONGO_URI }} >> ./server/.env
-      
+
+
       - name: 'github cr login'
         uses: docker/login-action@v1
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}          
-          
-      - name: Docker compose build and push
+
+      - name: create env file
         run: |
+          touch ./server/.env
+          echo MONGO_URI=$MONGO_URI >> ./server/.env
+          cat ./server/.env
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+      - name: Docker compose test, build, push
+        run: |
+          ls -a
+          ls -a ./server
+          docker-compose up --target test
           docker-compose up -d
           docker-compose push
 
-          

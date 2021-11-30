@@ -6,7 +6,6 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 
 var MongoClient = require("mongodb").MongoClient;
-require("dotenv").config({ path: ".env" });
 
 MongoClient.connect(process.env.MONGO_URI, function (err, client) {
   assert.equal(null, err);

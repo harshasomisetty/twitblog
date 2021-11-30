@@ -52,3 +52,5 @@ first step is to make sure the containers work, and the compose file doesn't hav
 then, you want to make a yml actions file that downloads the repo, builds the containers and stores it in a container registry
 
 the next step is getting the hosting platform to download your images, which is what I'm figuring out now
+
+getting multicontainer to work is so hard, this [[https://stackoverflow.com/questions/68988175/how-to-use-multi-container-docker-in-elastic-beanstalk-using-amazon-linux-2/69045155#69045155][post]] explains someting I found helpful
