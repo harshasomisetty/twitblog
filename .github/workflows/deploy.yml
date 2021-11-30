@@ -20,8 +20,6 @@ jobs:
     steps:
       - name: 'checkout git action'
         uses: actions/checkout@v2
-        env:
-          MONGO_URI: ${{ secrets.MONGO_URI }}
           
       - name: env setupfile
         run: echo ${{ secrets.MONGO_URI }} >> ./server/.env
@@ -31,17 +29,11 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: 'azure login'
-        uses: azure/docker-login@v1
-        with:
-          login-server: ${{ secrets.ACR_LOGIN_SERVER }}
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
-          
+          password: ${{ secrets.GITHUB_TOKEN }}          
           
       - name: Docker compose build and push
         run: |
           docker-compose up -d
           docker-compose push
+
+          

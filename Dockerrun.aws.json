@@ -1,0 +1,33 @@
+{
+  "AWSEBDockerrunVersion": "3",
+  "Authentication": {
+    "bucket": "twitconfig1",
+    "key": "/dockercfg"
+    },
+  "containerDefinitions": [
+    {
+      "name": "frontend",
+      "essential": true,
+      "image": "ghcr.io/harshasomisetty/twit_frontend",
+      "memory": 50,
+      "portMappings": [
+        {
+          "containerPort": 3000,
+          "hostPort": 3000
+        }
+      ]
+    },
+    {
+      "name": "server",
+      "essential": true,
+      "image": "ghcr.io/harshasomisetty/twit_server",
+      "memory": 50,
+      "portMappings": [
+        {
+          "containerPort": 5000,
+          "hostPort": 5000
+        }
+      ]
+    }
+  ]
+}

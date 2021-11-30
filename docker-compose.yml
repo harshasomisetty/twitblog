@@ -2,8 +2,7 @@ version: '3.9'
 services:
   server: 
     container_name: Twit-server
-    # image: ghcr.io/harshasomisetty/twit_server
-    image: twitcontainer.azurecr.io/twit_server
+    image: ghcr.io/harshasomisetty/twit_server
     build:
       context: ./server
       dockerfile: Dockerfile
@@ -11,11 +10,13 @@ services:
       - "5000:5000"
     networks:
       - app-net
-
+    mem_limit: 50m
+    env_file:
+      - ./server/.env
+      
   frontend:
     container_name: Twit-frontend
-    # image: ghcr.io/harshasomisetty/twit_frontend
-    image: twitcontainer.azurecr.io/twit_frontend
+    image: ghcr.io/harshasomisetty/twit_frontend
     build:
       context: ./frontend
       dockerfile: Dockerfile
@@ -25,9 +26,7 @@ services:
       - "3000:3000"
     networks:
       - app-net
-
-volumes:
-  esdata:
-
+    mem_limit: 50m
+        
 networks:
   app-net:
