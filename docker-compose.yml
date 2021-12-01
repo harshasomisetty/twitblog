@@ -26,7 +26,5 @@ services:
     networks:
       - app-net
     mem_limit: 100m
-    profiles:
-      - donotstart
 networks:
   app-net:

@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { positions } from "react-alert";
 import { useAlert } from "react-alert";
 import Loading from "../components/Loading.js";
 
 export default function Redir({ text = "" }) {
-  let navigate = useNavigate();
+  const navigate = useRef(useNavigate());
   const alert = useAlert();
 
   function RedirAlert() {

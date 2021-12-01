@@ -10,10 +10,10 @@ const ThreadList = ({ threads, cols = 2, author = false }) => (
           key={thread["_id"]}
           className="relative flex flex-row gap-2 items-center rounded border-2 border-gray-600 p-4 "
         >
-          <div className="border-2 border-gray-700">
+          <div className="border-0 border-gray-700">
             <p>{ind + 1}</p>
           </div>
-          <div className="border-2 border-gray-700">
+          <div className="border-0 border-gray-700">
             {author && <p>author: {thread.author}</p>}
             {thread.title ? (
               <p>title: {thread.title}</p>
