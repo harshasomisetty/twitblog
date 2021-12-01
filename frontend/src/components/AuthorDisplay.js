@@ -37,11 +37,11 @@ export default function AuthorDisplay({ authorName, threads }) {
       </a>
 
       <div className="flex flex-row space-x-3 items-stretch justify-around m-4">
-        <div className="flex flex-col border-2 p-2">
+        <div className="flex flex-col border-0 p-2">
           <p>Threads: {threads.length}</p>
           {/* <p>Topics: </p> */}
         </div>
-        <div className="flex flex-col border-2 p-2">
+        <div className="flex flex-col border-0 p-2">
           <Reverse reverse={reverse} setReverse={setReverse} />
           <Dropdown
             open={open}

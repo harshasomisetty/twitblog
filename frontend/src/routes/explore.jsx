@@ -1,6 +1,6 @@
 import PageFormat from "../components/PageFormat.js";
-import LeftSideBar from "../components/LeftSideBar.js";
 import RightSideBar from "../components/RightSideBar.js";
+import LeftSideBar from "../components/LeftSideBar.js";
 
 export default function Explore() {
   return (

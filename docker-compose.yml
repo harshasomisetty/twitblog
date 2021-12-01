@@ -2,33 +2,29 @@ version: '3.9'
 services:
   server: 
     container_name: Twit-server
+    image: ghcr.io/harshasomisetty/twit_server
     build:
       context: ./server
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
-    volumes:
-      - .:/usr/src/app/data
     networks:
       - app-net
+    mem_limit: 100m
 
+      
   frontend:
     container_name: Twit-frontend
+    image: ghcr.io/harshasomisetty/twit_frontend
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    volumes:
-      - /app/node_modules
-      - ./client:/app
     depends_on:
       - server
     ports:
       - "3000:3000"
     networks:
       - app-net
-
-volumes:
-  esdata:
-
+    mem_limit: 100m
 networks:
   app-net:

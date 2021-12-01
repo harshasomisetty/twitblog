@@ -5,6 +5,9 @@ TData/
 node_modules/
 a
 b
+p
+d
+z
 
 *.swo
 *.swp
@@ -20,3 +23,10 @@ b
 
 
 !package.json
+!Dockerrun.aws.json
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.ym,l
+*.zip

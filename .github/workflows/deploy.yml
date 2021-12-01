@@ -1,40 +1,42 @@
-name: build
-
+name: Build TwitBlog Workflow
 
 on:
   push:
     branches: 
       - deploy
-end:
-  AZURE_WEBAPP_NAME: twitblog
-  AZURE_WEBAPP_PACKAGE_PATH: '.'
-  NODE_VERSION: '12.x'
+
+  env:
+    REGISTRY: ghcr.io
+    IMAGE_NAME: ${{ github.repository }}
+    NODE_VERSION: '12.x'
+    NODE_ENV: production
+    MONGO_URI: ${{ secrets.MONGO_URI }}
 
   jobs:
-  build-and-deploy:
-    name: Build and Deploy
-    runs-on: ubuntu-latest
-    environment: production
+    build-and-deploy:
+      name: Build and Deploy
+      runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
+      steps:
+        - name: 'checkout git action'
+          uses: actions/checkout@v2
 
-      - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ env.NODE_VERSION }}
+        - name: 'github cr login'
+          uses: docker/login-action@v1
+          with:
+            registry: ${{ env.REGISTRY }}
+            username: ${{ github.actor }}
+            password: ${{ secrets.GITHUB_TOKEN }}          
 
-      - name: npm install, build, and test
-        run: |
-          # Build and test the project, then
-          # deploy to Azure Web App.
-          npm install
-          npm run build --if-present
-          npm run test --if-present
-
-      - name: 'Deploy to Azure WebApp'
-        uses: azure/webapps-deploy@0b651ed7546ecfc75024011f76944cb9b381ef1e
-        with:
-          app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+        - name: create env file
+          run: |
+            touch ./server/.env
+            echo MONGO_URI=$MONGO_URI >> ./server/.env
+          env:
+            MONGO_URI: ${{ secrets.MONGO_URI }}
+                    
+        - name: Docker compose test, build, push
+          run: |
+            docker-compose up --target test
+            docker-compose up -d
+            docker-compose push

@@ -8,9 +8,10 @@ app.use(cors());
 var MongoClient = require("mongodb").MongoClient;
 require("dotenv").config({ path: ".env" });
 
-MongoClient.connect(process.env.MONGO_URI, function (err, client) {
+const database = process.env.MONGO_URI || "test_uri";
+
+MongoClient.connect(database, function (err, client) {
   assert.equal(null, err);
-  console.log("Mongo Connected");
   app.locals.twitter = client.db("Twitter");
 });
 
