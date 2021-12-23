@@ -35,7 +35,7 @@ def test_mongo():
 
 
 if __name__ == "__main__":
-    authors = ["cloudy_cl"]
+    authors = ["SimpelAlpha"]
 
     # delete_author_data(author)
 
