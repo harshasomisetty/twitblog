@@ -14,7 +14,8 @@ export default function Author() {
 
   useEffect(() => {
     async function fetchData() {
-      const url = "http://localhost:5000/author/" + params.authorName;
+      const url =
+        "http://" + location.host + ":5000/author/" + params.authorName;
       await axios
         .get(url)
         .then((res) => {

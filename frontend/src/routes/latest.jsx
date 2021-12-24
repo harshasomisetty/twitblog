@@ -10,7 +10,7 @@ export default function Latest() {
 
   useEffect(() => {
     async function fetchData() {
-      const url = "http://localhost:5000/latest";
+      const url = "http://" + location.host + ":5000/latest";
 
       await axios
         .get(url)
@@ -22,7 +22,7 @@ export default function Latest() {
           setBusy(false);
         })
         .catch((err) => {
-          console.log("error");
+          console.log("error2");
           setError(err.message);
         });
     }

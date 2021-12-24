@@ -14,7 +14,8 @@ export default function Thread() {
 
   useEffect(() => {
     async function fetchData() {
-      const url = "http://localhost:5000/thread/" + params.rootThread;
+      const url =
+        "http://" + location.host + ":5000/thread/" + params.rootThread;
 
       await axios
         .get(url)
