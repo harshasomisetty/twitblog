@@ -14,8 +14,19 @@ export default function Thread() {
 
   useEffect(() => {
     async function fetchData() {
-      const url =
-        "http://" + location.host + ":5000/thread/" + params.rootThread;
+      let url = "http://localhost:5000/thread/" + params.rootThread;
+
+      if (process.env.REACT_APP_DOCKER_ENV) {
+        url =
+          "http://" +
+          process.env.REACT_APP_DOCKER_ENV +
+          ":5000/thread/" +
+          params.rootThread;
+      } else {
+        console.log("not docker");
+      }
+
+      console.log(url);
 
       await axios
         .get(url)

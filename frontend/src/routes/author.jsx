@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import AuthorDisplay from "../components/AuthorDisplay.js";
-
 import Loading from "../components/Loading.js";
+
 const axios = require("axios");
 
 export default function Author() {
@@ -14,8 +14,19 @@ export default function Author() {
 
   useEffect(() => {
     async function fetchData() {
-      const url =
-        "http://" + location.host + ":5000/author/" + params.authorName;
+      let url = "http://localhost:5000/author/" + params.authorName;
+
+      if (process.env.REACT_APP_DOCKER_ENV) {
+        url =
+          "http://" +
+          process.env.REACT_APP_DOCKER_ENV +
+          ":5000/author/" +
+          params.authorName;
+      } else {
+        console.log("not docker");
+      }
+
+      console.log(url);
       await axios
         .get(url)
         .then((res) => {

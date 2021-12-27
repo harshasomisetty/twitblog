@@ -3,14 +3,23 @@ const app = express();
 const cors = require("cors");
 const assert = require("assert");
 const port = process.env.PORT || 5000;
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://67.207.93.146:3000",
+  })
+);
 
 var MongoClient = require("mongodb").MongoClient;
 require("dotenv").config({ path: ".env" });
 
 const database = process.env.MONGO_URI || "test_uri";
-
+console.log(process.env.REACT_APP_DOCKER_ENV);
 MongoClient.connect(database, function (err, client) {
+  if (process.env.DATABASE_HOST) {
+    var dbHost = process.env.DATABASE_HOST;
+    console.log("db2");
+    console.log(dbHost);
+  }
   assert.equal(null, err);
   app.locals.twitter = client.db("Twitter");
 });

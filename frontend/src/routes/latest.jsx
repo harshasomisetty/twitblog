@@ -10,8 +10,16 @@ export default function Latest() {
 
   useEffect(() => {
     async function fetchData() {
-      const url = "http://" + location.host + ":5000/latest";
+      console.log("test docker333", process.env);
+      let url = "http://localhost:5000/latest";
 
+      if (process.env.REACT_APP_DOCKER_ENV) {
+        url = "http://" + process.env.REACT_APP_DOCKER_ENV + ":5000/latest";
+      } else {
+        console.log("not docker");
+      }
+
+      console.log(url);
       await axios
         .get(url)
         .then((res) => {
@@ -22,7 +30,7 @@ export default function Latest() {
           setBusy(false);
         })
         .catch((err) => {
-          console.log("error2");
+          console.log("error");
           setError(err.message);
         });
     }
