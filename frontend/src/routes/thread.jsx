@@ -14,17 +14,7 @@ export default function Thread() {
 
   useEffect(() => {
     async function fetchData() {
-      let url = "http://localhost:5000/thread/" + params.rootThread;
-
-      if (process.env.REACT_APP_DOCKER_ENV) {
-        url =
-          "http://" +
-          process.env.REACT_APP_DOCKER_ENV +
-          ":5000/thread/" +
-          params.rootThread;
-      } else {
-        console.log("not docker");
-      }
+      let url = "/api/thread/" + params.rootThread;
 
       console.log(url);
 

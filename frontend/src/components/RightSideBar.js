@@ -17,13 +17,8 @@ const AuthorList = () => {
 
   useEffect(() => {
     async function fetch() {
-      let url = "http://localhost:5000/author";
+      let url = "/api/author";
 
-      if (process.env.REACT_APP_DOCKER_ENV) {
-        url = "http://" + process.env.REACT_APP_DOCKER_ENV + ":5000/author";
-      } else {
-        console.log("not docker");
-      }
       const test = await axios.get(url);
       setAuthors(test.data.authorList);
     }

@@ -1,7 +1,0 @@
-{
-  "AWSEBDockerrunVersion": "3",
-  "authentication": {
-    "bucket": "twitconfig1",
-    "key": "/dockercfg"
-  }
-}

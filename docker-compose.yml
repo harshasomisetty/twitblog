@@ -9,6 +9,10 @@ services:
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
+    expose:
+      - "5000"
+    networks:
+      - app-net
       
   frontend:
     container_name: Twit-frontend
@@ -20,4 +24,11 @@ services:
     depends_on:
       - server
     ports:
-      - "3000:3000"
+      - "80:80"
+    expose:
+      - "80"
+    networks:
+      - app-net
+
+networks:
+  app-net:

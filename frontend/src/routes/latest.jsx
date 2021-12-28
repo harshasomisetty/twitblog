@@ -10,14 +10,7 @@ export default function Latest() {
 
   useEffect(() => {
     async function fetchData() {
-      console.log("test docker333", process.env);
-      let url = "http://localhost:5000/latest";
-
-      if (process.env.REACT_APP_DOCKER_ENV) {
-        url = "http://" + process.env.REACT_APP_DOCKER_ENV + ":5000/latest";
-      } else {
-        console.log("not docker");
-      }
+      let url = "/api/latest";
 
       console.log(url);
       await axios

@@ -10,12 +10,8 @@ This is my attempt at using Twitter's API o convert a user's account into a esse
 ** Plan
 load all data into sqlite
 write methods to query until latest tweet
-add nginx to docker
-finalize docker
-deploy to google [[https://cloud.google.com/run/][cloud]]
 *** Steps
 **** UI
-***** TODO search threads in author page
 ***** TODO Beautify
 ****** author page
 ******* add more author data
@@ -32,11 +28,9 @@ deploy to google [[https://cloud.google.com/run/][cloud]]
 ***** TODO index to query date
 ***** TODO Expand links
 ***** TODO summarize
-***** TODO better keywords
-****** NEXT Naval how to get rich no keywords bug
 **** Future
-***** right sidebar width constant
 ***** TODO Search Page with advanced options
+***** Mobile view
 
 ** Other notes and future documentation
 *** Docker and Mern stack
@@ -54,3 +48,12 @@ then, you want to make a yml actions file that downloads the repo, builds the co
 the next step is getting the hosting platform to download your images, which is what I'm figuring out now
 
 getting multicontainer to work is so hard, this [[https://stackoverflow.com/questions/68988175/how-to-use-multi-container-docker-in-elastic-beanstalk-using-amazon-linux-2/69045155#69045155][post]] explains someting I found helpful
+
+**** Nginx
+
+using nginx as a reverse proxy to get all requests, and channel to right ports
+useful link to setup for ports here [[https://www.digitalocean.com/community/tutorials/how-to-secure-a-containerized-node-js-application-with-nginx-let-s-encrypt-and-docker-compose][digital ocean guide]]
+**** Environment variables
+
+docker hardcodes the env variables during build, so managing env variables is annoying
+[[https://levelup.gitconnected.com/handling-multiple-environments-in-react-with-docker-543762989783][couple ways to manage this]]

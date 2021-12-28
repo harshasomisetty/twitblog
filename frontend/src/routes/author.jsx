@@ -14,17 +14,7 @@ export default function Author() {
 
   useEffect(() => {
     async function fetchData() {
-      let url = "http://localhost:5000/author/" + params.authorName;
-
-      if (process.env.REACT_APP_DOCKER_ENV) {
-        url =
-          "http://" +
-          process.env.REACT_APP_DOCKER_ENV +
-          ":5000/author/" +
-          params.authorName;
-      } else {
-        console.log("not docker");
-      }
+      let url = "/api/author/" + params.authorName;
 
       console.log(url);
       await axios
