@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ThreadDisplay from "../components/ThreadDisplay.js";
 import Loading from "../components/Loading.js";
-
-const axios = require("axios");
+import callApi from "../utils/api.js";
 
 export default function Thread() {
   let params = useParams();
@@ -13,28 +12,16 @@ export default function Thread() {
   const [error, setError] = useState();
 
   useEffect(() => {
-    async function fetchData() {
-      let url = "/api/thread/" + params.rootThread;
-
-      console.log(url);
-
-      await axios
-        .get(url)
-        .then((res) => {
-          if (res.status !== 200) {
-            throw Error("Data currently not available");
-          }
-          setState({
-            threadData: res.data.threadData,
-            tweets: res.data.tweets,
-          });
-          setBusy(false);
-        })
-        .catch((err) => {
-          setError(err.message);
-        });
+    async function fetchData(params) {
+      let response = await callApi(params);
+      if (response[0]) {
+        setState({ threadData: response.threadData, tweets: response.tweets });
+        setBusy(false);
+      } else {
+        setError(response[1]);
+      }
     }
-    fetchData();
+    fetchData("thread/" + params.rootThread);
   }, [params]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (isBusy) return <Loading error={error} />;

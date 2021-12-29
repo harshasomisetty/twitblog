@@ -83,4 +83,3 @@ function Reverse(props) {
     </button>
   );
 }
-p;

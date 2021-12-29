@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import AuthorDisplay from "../components/AuthorDisplay.js";
 import Loading from "../components/Loading.js";
-
-const axios = require("axios");
+import callApi from "../utils/api.js";
 
 export default function Author() {
   let params = useParams();
@@ -13,25 +12,16 @@ export default function Author() {
   const [error, setError] = useState();
 
   useEffect(() => {
-    async function fetchData() {
-      let url = "/api/author/" + params.authorName;
-
-      console.log(url);
-      await axios
-        .get(url)
-        .then((res) => {
-          if (res.status !== 200) {
-            throw Error("Data currently not available");
-          }
-          setState({ tData: res.data });
-          setBusy(false);
-        })
-        .catch((err) => {
-          setError(err.message);
-        });
+    async function fetchData(params) {
+      let response = await callApi(params);
+      if (response[0]) {
+        setState({ threadData: response });
+        setBusy(false);
+      } else {
+        setError(response[1]);
+      }
     }
-
-    fetchData();
+    fetchData("author/" + params.authorName);
   }, [params]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (isBusy) return <Loading error={error} />;
@@ -39,7 +29,7 @@ export default function Author() {
   return (
     <AuthorDisplay
       authorName={params.authorName}
-      threads={state.tData.threads}
+      threads={state.threadData.threads}
     />
   );
 }

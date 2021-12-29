@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Loading from "../components/Loading.js";
 import LatestDisplay from "../components/LatestDisplay.js";
-const axios = require("axios");
+import callApi from "../utils/api.js";
 
 export default function Latest() {
   const [state, setState] = useState();
@@ -9,25 +9,16 @@ export default function Latest() {
   const [error, setError] = useState();
 
   useEffect(() => {
-    async function fetchData() {
-      let url = "/api/latest";
-
-      console.log(url);
-      await axios
-        .get(url)
-        .then((res) => {
-          if (res.status !== 200) {
-            throw Error("Data currently not available");
-          }
-          setState({ threadData: res.data.threadData });
-          setBusy(false);
-        })
-        .catch((err) => {
-          console.log("error");
-          setError(err.message);
-        });
+    async function fetchData(params) {
+      let response = await callApi(params);
+      if (response[0]) {
+        setState({ threadData: response[1].threadData });
+        setBusy(false);
+      } else {
+        setError(response[1]);
+      }
     }
-    fetchData();
+    fetchData("latest");
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (isBusy) return <Loading error={error} />;

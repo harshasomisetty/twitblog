@@ -1,7 +1,7 @@
 import Search from "./Search.js";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-const axios = require("axios");
+import callApi from "../utils/api.js";
 
 const RightSideBar = ({ displaySearch = true }) => {
   return (
@@ -16,13 +16,13 @@ const AuthorList = () => {
   const [authors, setAuthors] = useState([]);
 
   useEffect(() => {
-    async function fetch() {
-      let url = "/api/author";
-
-      const test = await axios.get(url);
-      setAuthors(test.data.authorList);
+    async function fetchData(params) {
+      let response = await callApi(params);
+      if (response[0]) {
+        setAuthors(response[1].authorList);
+      }
     }
-    fetch();
+    fetchData("author");
   }, []);
 
   return (
