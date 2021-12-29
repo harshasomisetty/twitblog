@@ -27,7 +27,7 @@ export default function CopyButton({ tweets }) {
             size="18"
             className="text-gray-500 font-extralight my-auto"
           />
-          <p>Copy Thread</p>
+          <p className="text-sm">Copy Thread Text</p>
         </div>
       </button>
     </div>

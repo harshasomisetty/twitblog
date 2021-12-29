@@ -1,21 +1,22 @@
-import { editSent, capitalizeSent, getTweetLink } from "../utils/functions.js";
+import { editSent, getTweetLink, getUserLink } from "../utils/functions.js";
 import CopyButton from "../components/CopyTextButton.js";
 
+function formatDate(d) {
+  return new Date(d).toISOString().split("T")[0];
+}
+
 const ThreadMetadata = ({ data, tweets }) => {
+  let d1 = formatDate(data.statistics["oldest_tweet"] * 1000);
+  let d2 = formatDate(data.statistics["youngest_tweet"] * 1000);
+
   return (
     <div className="flex flex-row justify-around">
       <div className="flex flex-col space-y-3 rounded border-2 border-gray-400 p-2">
-        <p>Author: {data.author}</p>
         <p>Keywords: {data.keywords.join(", ")}</p>
+        <p>
+          Thread active from: {d1} to {d2}
+        </p>
         <CopyButton tweets={tweets} />
-      </div>
-
-      <div className="rounded border-2 border-gray-400 p-2">
-        {Object.keys(data.statistics).map((key) => (
-          <p>
-            {capitalizeSent(key)}: {data.statistics[key]}
-          </p>
-        ))}
       </div>
     </div>
   );
@@ -34,9 +35,17 @@ const ThreadReader = ({ tweets, author }) => (
 );
 
 const ThreadView = ({ data, tweets, author }) => (
-  <div className="flex flex-col justify-between ">
-    <ThreadMetadata data={data} tweets={tweets} />
-    <ThreadReader tweets={tweets} author={author} />
+  <div className="flex flex-col">
+    <a href={getUserLink(author)}>
+      <h2 className="sticky top-0 bg-backgroundcol border-2 p-4">
+        {author}'s Thread
+      </h2>
+    </a>
+
+    <div className="grid grid-cols-1 divide-y divide-gray-300 gap-4 py-4">
+      <ThreadMetadata data={data} tweets={tweets} />
+      <ThreadReader tweets={tweets} author={author} />
+    </div>
   </div>
 );
 export default ThreadView;

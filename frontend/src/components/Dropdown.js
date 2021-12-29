@@ -5,14 +5,16 @@ export default function Dropdown(props) {
     <div
       tabIndex={1}
       onBlur={(e) => props.setOpen(false)}
-      className="focus:outline-none z-50"
+      className="focus:outline-none z-50 rounded border-2 p-2 border-gray-700"
     >
       <button
         type="button"
         onClick={() => props.setOpen(!props.open)}
         className="flex flex-row space-x-1"
       >
-        <p>Sort Threads</p>
+        <p>
+          Sort Threads by: <b>{props.sortType}</b>{" "}
+        </p>
 
         <IoIosArrowDropdownCircle
           size="18"

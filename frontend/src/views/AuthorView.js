@@ -31,26 +31,24 @@ export default function AuthorView({ authorName, threads }) {
   return (
     <div className="flex flex-col">
       <a href={getUserLink(authorName)}>
-        <h2 className="sticky top-0 bg-backgroundcol border-2 p-4">
-          {authorName}
-        </h2>
+        <div className="flex flex-row sticky top-0 bg-backgroundcol border-2 p-4 items-end space-x-3">
+          <h2 className="">{authorName}: </h2>
+          <h3>{threads.length} Threads</h3>
+        </div>
       </a>
 
       <div className="flex flex-row space-x-3 items-stretch justify-around m-4">
         <div className="flex flex-col border-0 p-2">
-          <p>Threads: {threads.length}</p>
-          {/* <p>Topics: </p> */}
+          <p>Topics: COMING SOON! </p>
         </div>
-        <div className="flex flex-col border-0 p-2">
-          <Reverse reverse={reverse} setReverse={setReverse} />
+        <div className="flex flex-col border-0 p-2 space-y-1 space-x-2">
           <Dropdown
             open={open}
             setOpen={setOpen}
             sortType={sortType}
             onChange={handleChange}
           />
-
-          <p>{sortType}</p>
+          <Reverse reverse={reverse} setReverse={setReverse} />
         </div>
       </div>
 
@@ -64,18 +62,18 @@ function Reverse(props) {
     <button type="button" onClick={() => props.setReverse(!props.reverse)}>
       {props.reverse ? (
         <div className="flex flex-row space-x-1">
-          <p>Ascending</p>
+          <p className="text-xs">Ascending</p>
           <CgSortZa
-            size="25"
+            size="15"
             className="text-gray-500 font-extralight my-auto"
           />
         </div>
       ) : (
         <div className="flex flex-row space-x-1">
-          <p>Descending</p>
+          <p className="text-xs">Descending</p>
 
           <CgSortAz
-            size="25"
+            size="15"
             className="text-gray-500 font-extralight my-auto"
           />
         </div>
