@@ -1,5 +1,5 @@
-import { editSent, capitalizeSent, getTweetLink } from "./utils.js";
-import CopyButton from "./CopyTextButton.js";
+import { editSent, capitalizeSent, getTweetLink } from "../utils/functions.js";
+import CopyButton from "../components/CopyTextButton.js";
 
 const ThreadMetadata = ({ data, tweets }) => {
   return (
@@ -33,10 +33,10 @@ const ThreadReader = ({ tweets, author }) => (
   </div>
 );
 
-const ThreadDisplay = ({ data, tweets, author }) => (
+const ThreadView = ({ data, tweets, author }) => (
   <div className="flex flex-col justify-between ">
     <ThreadMetadata data={data} tweets={tweets} />
     <ThreadReader tweets={tweets} author={author} />
   </div>
 );
-export default ThreadDisplay;
+export default ThreadView;

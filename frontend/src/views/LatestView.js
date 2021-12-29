@@ -1,6 +1,6 @@
-import ThreadList from "./ThreadList.js";
+import ThreadList from "../components/ThreadList.js";
 
-export default function LatestDisplay({ threadData }) {
+export default function LatestView({ threadData }) {
   return (
     <div className="flex flex-col">
       <h3 className="p-2">This is happening</h3>

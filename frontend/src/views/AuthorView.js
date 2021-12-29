@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { CgSortAz, CgSortZa } from "react-icons/cg";
-import { getUserLink, sortTypes } from "./utils.js";
-import Dropdown from "./Dropdown.js";
-import ThreadList from "./ThreadList.js";
+import { getUserLink, sortTypes } from "../utils/functions.js";
+import Dropdown from "../components/Dropdown.js";
+import ThreadList from "../components/ThreadList.js";
 
-export default function AuthorDisplay({ authorName, threads }) {
+export default function AuthorView({ authorName, threads }) {
   const [sortType, setSortType] = useState(Object.keys(sortTypes)[0]);
   const [reverse, setReverse] = useState(false);
   const [open, setOpen] = useState(false);

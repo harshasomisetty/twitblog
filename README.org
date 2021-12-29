@@ -31,6 +31,7 @@ write methods to query until latest tweet
 **** Future
 ***** TODO Search Page with advanced options
 ***** Mobile view
+***** github actions to autoupdate images, deploy to server
 
 ** Other notes and future documentation
 *** Docker and Mern stack

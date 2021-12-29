@@ -1,5 +1,5 @@
 import { IoIosArrowDropdownCircle } from "react-icons/io";
-import { sortTypes } from "./utils.js";
+import { sortTypes } from "../utils/functions.js";
 export default function Dropdown(props) {
   return (
     <div

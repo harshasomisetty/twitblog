@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import AuthorDisplay from "../components/AuthorDisplay.js";
+import AuthorView from "../views/AuthorView.js";
 import Loading from "../components/Loading.js";
 import callApi from "../utils/api.js";
 
@@ -15,7 +15,7 @@ export default function Author() {
     async function fetchData(params) {
       let response = await callApi(params);
       if (response[0]) {
-        setState({ threadData: response });
+        setState({ threadData: response[1] });
         setBusy(false);
       } else {
         setError(response[1]);
@@ -27,7 +27,7 @@ export default function Author() {
   if (isBusy) return <Loading error={error} />;
 
   return (
-    <AuthorDisplay
+    <AuthorView
       authorName={params.authorName}
       threads={state.threadData.threads}
     />

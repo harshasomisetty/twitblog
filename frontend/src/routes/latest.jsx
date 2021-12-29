@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Loading from "../components/Loading.js";
-import LatestDisplay from "../components/LatestDisplay.js";
+import LatestView from "../views/LatestView.js";
 import callApi from "../utils/api.js";
 
 export default function Latest() {
@@ -23,6 +23,6 @@ export default function Latest() {
 
   if (isBusy) return <Loading error={error} />;
   else {
-    return <LatestDisplay threadData={state.threadData} />;
+    return <LatestView threadData={state.threadData} />;
   }
 }

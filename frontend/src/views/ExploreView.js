@@ -1,6 +1,6 @@
-import Search from "./Search.js";
+import Search from "../components/Search.js";
 
-const ExploreDisplay = () => {
+const ExploreView = () => {
   return (
     <div className="flex flex-col s-3">
       <Search />
@@ -9,4 +9,4 @@ const ExploreDisplay = () => {
   );
 };
 
-export default ExploreDisplay;
+export default ExploreView;

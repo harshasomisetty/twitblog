@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import ThreadDisplay from "../components/ThreadDisplay.js";
+import ThreadDisplay from "../views/ThreadDisplay.js";
 import Loading from "../components/Loading.js";
 import callApi from "../utils/api.js";
 
@@ -15,7 +15,10 @@ export default function Thread() {
     async function fetchData(params) {
       let response = await callApi(params);
       if (response[0]) {
-        setState({ threadData: response.threadData, tweets: response.tweets });
+        setState({
+          threadData: response[1].threadData,
+          tweets: response[1].tweets,
+        });
         setBusy(false);
       } else {
         setError(response[1]);
