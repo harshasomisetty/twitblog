@@ -5,56 +5,46 @@
 ** Premise
 Twitter has so much information hidden in it's threads, but navigating them by topic is somewhat hard.
 
-This is my attempt at using Twitter's API o convert a user's account into a essentially a blog, done with MERN stack
+This is my attempt at using Twitter's API o convert a user's account into a essentially a blog, implemented with MERN stack, Deployed as a multi-container Docker app
 
-** Plan
-load all data into sqlite
-write methods to query until latest tweet
-*** Steps
-**** UI
-***** TODO Beautify
-****** author page
-******* add more author data
-******** followers
-******** main topics
-******* make thread cards
-******* Title formatting, adding a summary in thread card
-****** Thread Page
-******* Better text formatting and font
-***** TODO Reccomendations
+** Future Features to Implement
+*** Data Management
+**** load all data into sqlite
+**** write methods to query until latest tweet
+**** Auto Update Twitter data
+**** limit how much data is sent
+**** Expand links
+*** UI
+**** Author Page
+***** main topics talked about across threads
+**** Thread Page
+***** Better text formatting
+***** Thread summary
+**** Make better thread card
+**** Reccomendations
 **** Data
-***** NEXT Auto Update Twitter data
-***** TODO limit how much data is sent
-***** TODO index to query date
-***** TODO Expand links
-***** TODO summarize
-**** Future
-***** TODO Search Page with advanced options
-***** Mobile view
-***** github actions to autoupdate images, deploy to server
+**** Search Page 
+**** Mobile view
+**** github actions to autoupdate images, deploy to server
 
-** Other notes and future documentation
-*** Docker and Mern stack
+** Notes
+*** Architecture
+**** MERN
+The frontend is build with React and Tailwind for styling, connects to an Node/Express backend to retrieve data stored in Mongodb.
+
+[[https://github.com/fireship-io/tailwind-dashboard/blob/main/src/index.css][This]] was amazing reference while figuring out tailwind
 Used [[https://blog.patricktriest.com/text-search-docker-elasticsearch/][this vue and elastic tutorial]] and [[https://blog.logrocket.com/full-text-search-with-node-js-and-elasticsearch-on-docker/][this other tutorial]] to help figure out the MERN stack
+**** Deployment
+
+Deployed the app using a multi-container Docker setup. Specifically, the frontend is built and stored in a Nginx docker container (as a reverse proxy). The Express backend is it's own node container. Containers have their own user defined network so the backend is only visible to the frontend
+
+
 
 For refactoring the app after solidifying my stack, I used [[https://www.section.io/engineering-education/build-and-dockerize-a-full-stack-react-app-with-nodejs-and-nginx/][this]] link. Also, [[https://tiangolo.medium.com/react-in-docker-with-nginx-built-with-multi-stage-docker-builds-including-testing-8cc49d6ec305][this link]] help directly build the app and push into nginx
 
-[[https://github.com/fireship-io/tailwind-dashboard/blob/main/src/index.css][This]] was amazing reference while figuring out tailwind
-*** Deployment
-Figuring how how to deploy a multi container app was stupidly confusing
-
-first step is to make sure the containers work, and the compose file doesn't have any volumes
-then, you want to make a yml actions file that downloads the repo, builds the containers and stores it in a container registry
-
-the next step is getting the hosting platform to download your images, which is what I'm figuring out now
 
 getting multicontainer to work is so hard, this [[https://stackoverflow.com/questions/68988175/how-to-use-multi-container-docker-in-elastic-beanstalk-using-amazon-linux-2/69045155#69045155][post]] explains someting I found helpful
 
-**** Nginx
-
 using nginx as a reverse proxy to get all requests, and channel to right ports
 useful link to setup for ports here [[https://www.digitalocean.com/community/tutorials/how-to-secure-a-containerized-node-js-application-with-nginx-let-s-encrypt-and-docker-compose][digital ocean guide]]
-**** Environment variables
 
-docker hardcodes the env variables during build, so managing env variables is annoying
-[[https://levelup.gitconnected.com/handling-multiple-environments-in-react-with-docker-543762989783][couple ways to manage this]]

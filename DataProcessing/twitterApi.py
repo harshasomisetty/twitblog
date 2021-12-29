@@ -216,8 +216,10 @@ class TwitterAPI:
                 req = requests.get(url + "&next_token=" +
                                    req.json()["meta"]["next_token"],
                                    headers=self.bearer)
+                print(req)
                 data.extend(req.json()["data"])
             except Exception as e:
+
                 raise e
 
         return data

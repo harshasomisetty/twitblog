@@ -145,6 +145,7 @@ def clean_threads(tweet_dict, thread_dict, thread_length: int):
 
 
 def thread_extraction_pipeline(cur_user: str, thread_length: int):
+
     thread_dir = data_dir + cur_user + "/"
     tweet_dict = load_tweets(cur_user, api)
     thread_dict = get_threads(tweet_dict)  # dict of (root id, children)

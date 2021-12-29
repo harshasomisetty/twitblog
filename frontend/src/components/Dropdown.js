@@ -1,10 +1,10 @@
 import { IoIosArrowDropdownCircle } from "react-icons/io";
 import { sortTypes } from "../utils/functions.js";
+
 export default function Dropdown(props) {
   return (
     <div
       tabIndex={1}
-      onBlur={(e) => props.setOpen(false)}
       className="focus:outline-none z-50 rounded border-2 p-2 border-gray-700"
     >
       <button
@@ -29,7 +29,7 @@ export default function Dropdown(props) {
               onClick={() => props.onChange(type)}
               className="flex items-start p-2 hover:bg-gray-500 border-2 border-gray-700"
             >
-              <p>{type}</p>
+              {type}
             </button>
           ))}
         </div>
