@@ -20,7 +20,6 @@ This is my attempt at using Twitter's API o convert a user's account into a esse
 **** Thread Page
 ***** Better text formatting
 ***** Thread summary
-**** Make better thread card
 **** Reccomendations
 **** Data
 **** Search Page 

@@ -20,10 +20,10 @@ export function getUserLink(author) {
 
 export const sortTypes = {
   Likes: "like_count",
-  "Thread Length": "thread_length",
   Retweets: "retweet_count",
   Replies: "reply_count",
   Quotes: "quote_count",
+  "Thread Length": "thread_length",
   "Oldest Start": "oldest_tweet",
   "Recently Updated": "youngest_tweet",
 };
