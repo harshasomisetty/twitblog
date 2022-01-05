@@ -1,8 +1,8 @@
-import { IoCopyOutline } from "react-icons/io5";
-import { positions } from "react-alert";
-import { useAlert } from "react-alert";
+import {IoCopyOutline} from "react-icons/io5";
+import {positions} from "react-alert";
+import {useAlert} from "react-alert";
 
-export default function CopyButton({ tweets }) {
+export default function CopyButton({tweets}) {
   const alert = useAlert();
   function Clickcopy(text) {
     alert.success("Copied Text", {
@@ -20,14 +20,14 @@ export default function CopyButton({ tweets }) {
         onClick={() => {
           Clickcopy(tweets.map((t) => t[0]).join("\n\n***\n\n"));
         }}
-        className="border-2 rounded p-2"
+        className="border border-slate-500 hover:shadow-xl pointer-events-auto rounded p-2"
       >
         <div className="flex flex-row space-x-3">
           <IoCopyOutline
-            size="18"
+            size="14"
             className="text-gray-500 font-extralight my-auto"
           />
-          <p className="text-sm">Copy Thread Text</p>
+          <p className="text-xs">Copy Thread Text</p>
         </div>
       </button>
     </div>

@@ -7,36 +7,49 @@ Twitter has so much information hidden in it's threads, but navigating them by t
 
 This is my attempt at using Twitter's API o convert a user's account into a essentially a blog, implemented with MERN stack, Deployed as a multi-container Docker app
 
+Link here:[[http://twitblog.xyz/home][Twitblog]]
+
 ** Future Features to Implement
 *** Data Management
 **** load all data into sqlite
-**** write methods to query until latest tweet
 **** Auto Update Twitter data
-**** limit how much data is sent
+***** write methods to query until latest tweet
+***** run as it's own container
+**** limit how much data is sent on queries
 **** Expand links
+***** get and show images
+**** get rid of "title" in data scheme
+**** Better keywords
+***** no pronouns
+***** get rid of urls
+**** Summary
+*** Dev
+**** Logging
+**** "Maintenence" screen
+**** github actions to autoupdate images, deploy to server
+**** SSL cert
 *** UI
-**** Author Page
-***** main topics talked about across threads
 **** Thread Page
 ***** Better text formatting
 ***** Thread summary
-**** Reccomendations
-**** Data
-**** Search Page 
+**** Author Page
+***** main topics talked about across threads
+**** Thread Card
+***** Better spacing of text
+***** overflow
+***** align blocks
+***** NEXT Fix bug in thread count
+**** Reccomendations of similar threads
+**** Back button
+**** Advanced Search Page 
 **** Mobile view
-**** github actions to autoupdate images, deploy to server
-
+***** side bar at bottom
 ** Notes
 *** Architecture
-**** MERN
-The frontend is build with React and Tailwind for styling, connects to an Node/Express backend to retrieve data stored in Mongodb.
+*** Referencnes
 
 [[https://github.com/fireship-io/tailwind-dashboard/blob/main/src/index.css][This]] was amazing reference while figuring out tailwind
 Used [[https://blog.patricktriest.com/text-search-docker-elasticsearch/][this vue and elastic tutorial]] and [[https://blog.logrocket.com/full-text-search-with-node-js-and-elasticsearch-on-docker/][this other tutorial]] to help figure out the MERN stack
-**** Deployment
-
-Deployed the app using a multi-container Docker setup. Specifically, the frontend is built and stored in a Nginx docker container (as a reverse proxy). The Express backend is it's own node container. Containers have their own user defined network so the backend is only visible to the frontend
-
 
 
 For refactoring the app after solidifying my stack, I used [[https://www.section.io/engineering-education/build-and-dockerize-a-full-stack-react-app-with-nodejs-and-nginx/][this]] link. Also, [[https://tiangolo.medium.com/react-in-docker-with-nginx-built-with-multi-stage-docker-builds-including-testing-8cc49d6ec305][this link]] help directly build the app and push into nginx

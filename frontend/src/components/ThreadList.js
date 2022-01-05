@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { capitalizeSent, sortTypes } from "../utils/functions.js";
+import {Link} from "react-router-dom";
+import {capitalizeSent, sortTypes} from "../utils/functions.js";
 function sortThreads(threads, sortType, reverse) {
   const s = reverse * 1 === 0 ? -1 : 1;
 
@@ -8,13 +8,7 @@ function sortThreads(threads, sortType, reverse) {
   );
 }
 
-const ThreadList = ({
-  threads,
-  sortType,
-  reverse,
-  cols = 2,
-  author = true,
-}) => (
+const ThreadList = ({threads, sortType, reverse, cols = 2, author = true}) => (
   <div
     className={`grid grid-cols-1 sm:grid-cols-${cols} gap-3 m-5 overflow-auto scrollbar-hide`}
   >

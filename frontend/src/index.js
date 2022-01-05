@@ -1,16 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Provider } from "react-alert";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {Provider} from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
 
 import App from "./App";
-import PageFormat from "./components/PageFormat.js";
+import PageFormat from "./layouts/PageFormat.js";
 
 import Author from "./routes/author";
 import Latest from "./routes/latest";
 import Redir from "./routes/redirect";
-import Explore from "./routes/explore";
 import Thread from "./routes/thread";
 
 import ExploreView from "./views/ExploreView.js";
@@ -29,6 +28,12 @@ ReactDOM.render(
             <Route index element={<Latest />} />
           </Route>
           <Route
+            path="explore"
+            element={<PageFormat Title="Explore" toAdd={true} />}
+          >
+            <Route index element={<ExploreView />} />
+          </Route>
+          <Route
             path="author"
             element={<PageFormat Title="Author Page" toAdd={false} />}
           >
@@ -43,9 +48,7 @@ ReactDOM.render(
             <Route index element={<Redir text="Find specific Thread!" />} />
           </Route>
         </Route>
-        <Route path="explore" element={<Explore />}>
-          <Route index element={<ExploreView />} />
-        </Route>
+
         <Route path="*" element={<Redir text="Invalid Page!" />} />
       </Routes>
     </BrowserRouter>
