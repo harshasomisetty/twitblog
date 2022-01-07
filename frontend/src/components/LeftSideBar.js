@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 const LeftSideBar = () => {
   return (
-    <div className="sticky top-0 h-screen flex flex-col border-0 rounded-sm p-2 w-24 xl:w-56">
+    <div className="sticky hidden sm:block top-0 h-screen flex flex-col border-0 rounded-sm p-2 w-24 xl:w-56 border-r border-gray-500">
       <SideBarIcon
         icon={<FaTwitter className="transform skew-y-12" size="28" />}
         text="TwitBlog"

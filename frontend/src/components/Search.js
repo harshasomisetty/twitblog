@@ -1,7 +1,7 @@
 import useSignUpForm from "../hooks/searchHook.js";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
-import { FaSearch } from "react-icons/fa";
+import {FaSearch} from "react-icons/fa";
 
 const Search = () => {
   const navigate = useNavigate();
@@ -9,7 +9,7 @@ const Search = () => {
     navigate("/author/" + inputs.search_query);
   };
 
-  const { inputs, handleInputChange, handleSubmit } = useSignUpForm(signup);
+  const {inputs, handleInputChange, handleSubmit} = useSignUpForm(signup);
 
   return (
     <form id="form" onSubmit={handleSubmit} className="search">
