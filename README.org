@@ -30,20 +30,12 @@ Link here:[[http://twitblog.xyz/home][Twitblog]]
 **** SSL cert
 *** UI
 **** Thread Page
-***** Better text formatting
 ***** Thread summary
 **** Author Page
 ***** main topics talked about across threads
-**** Thread Card
-***** Better spacing of text
-***** overflow
-***** align blocks
-***** NEXT Fix bug in thread count
 **** Reccomendations of similar threads
 **** Back button
 **** Advanced Search Page 
-**** Mobile view
-***** side bar at bottom
 ** Notes
 *** Architecture
 *** Referencnes

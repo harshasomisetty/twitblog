@@ -5,6 +5,7 @@ import {
   formatDate,
 } from "../utils/functions.js";
 import CopyButton from "../components/CopyTextButton.js";
+import {Link} from "react-router-dom";
 
 const ThreadMetadata = ({data, tweets}) => {
   let d1 = formatDate(data.statistics["oldest_tweet"] * 1000);
@@ -40,9 +41,9 @@ const ThreadReader = ({tweets, author}) => (
 
 const ThreadView = ({data, tweets, author}) => (
   <div className="flex flex-col divide-y divide-gray-500">
-    <a href={getUserLink(author)}>
+    <Link to={"/author/" + author}>
       <h2 className="sticky top-0 bg-backgroundcol  p-4">{author}'s Thread</h2>
-    </a>
+    </Link>
 
     <div className="grid grid-cols-1 divide-y divide-gray-500 gap-4 py-4">
       <ThreadMetadata data={data} tweets={tweets} />
