@@ -43,12 +43,12 @@ export default function AuthorView({authorName, threads}) {
     <div className="flex flex-col divide-y divide-gray-500">
       <a href={getUserLink(authorName)}>
         <h2 className="sticky top-0 bg-backgroundcol p-4">
-          {authorName}: {threads.length} Threads
+          {authorName}: Read {threads.length} Threads
         </h2>
       </a>
 
-      <div className="grid grid-cols-1 divide-y divide-gray-500 gap-4 py-4">
-        <div className="flex flex-row space-x-3 items-stretch justify-around m-4 p-2">
+      <div className="grid grid-cols-1 py-2">
+        <div className="flex flex-row space-x-3 border-b border-gray-700 items-stretch justify-around m-4 p-2">
           <p>Topics: COMING SOON! </p>
           <div className="flex flex-col border-0 space-y-1 space-x-2">
             <Dropdown

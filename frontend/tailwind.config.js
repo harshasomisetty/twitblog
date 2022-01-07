@@ -20,6 +20,9 @@ module.exports = {
       lineHeight: {
         1: ".1rem",
       },
+      xIndex: {
+        100: "100",
+      },
     },
     container: {
       center: true,
