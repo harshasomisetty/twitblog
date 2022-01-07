@@ -1,5 +1,5 @@
 import Search from "../components/Search.js";
-import AuthorList from "../components/AuthorList.js";
+// import AuthorList from "../components/AuthorList.js";
 
 const ExploreView = () => {
   return (

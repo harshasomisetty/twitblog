@@ -32,6 +32,7 @@ def load_tweets(username: str, api):
         print("Downloading new", username, "tweets")
 
         tweets = api.get_historical_tweets(username)
+
         if tweets != -1:
             with open(tweet_location, "w+") as file:
                 json.dump(tweets, file, indent=1)

@@ -8,15 +8,26 @@ import twitterApi
 from twitterApi import TwitterAPI
 from dataMgmt import load_tweets, save_threads_json
 
+import tweepy
+
 config = configparser.ConfigParser(interpolation=None)
 config.read("config.ini")
 
-api = TwitterAPI(username=config['TwitterConfig']['Username'],
-                 bearer_token=config['TwitterConfig']["Bearer"],
-                 key=config['TwitterConfig']["ApiKey"],
-                 secret=config['TwitterConfig']["ApiSecret"],
-                 token=config['TwitterConfig']["Access"],
-                 token_secret=config['TwitterConfig']["AccessSecret"])
+api_mine = TwitterAPI(username=config['TwitterConfig']['Username'],
+                      bearer_token=config['TwitterConfig']["Bearer"],
+                      key=config['TwitterConfig']["ApiKey"],
+                      secret=config['TwitterConfig']["ApiSecret"],
+                      token=config['TwitterConfig']["Access"],
+                      token_secret=config['TwitterConfig']["AccessSecret"])
+
+# tweepy api
+auth = tweepy.OAuthHandler(config['TwitterConfig']["ApiKey"],
+                           config['TwitterConfig']["ApiSecret"])
+auth.set_access_token(config['TwitterConfig']["Access"],
+                      config['TwitterConfig']["AccessSecret"])
+
+api = tweepy.API(auth)
+client = tweepy.Client(bearer_token=config['TwitterConfig']["Bearer"])
 
 data_dir = config['Data']['data_dir']
 
@@ -146,8 +157,32 @@ def clean_threads(tweet_dict, thread_dict, thread_length: int):
 
 def thread_extraction_pipeline(cur_user: str, thread_length: int):
 
-    thread_dir = data_dir + cur_user + "/"
-    tweet_dict = load_tweets(cur_user, api)
+    # thread_dir = data_dir + cur_user + "/"
+
+    # user_data = api_mine.user_lookup(cur_user, payload=["created_at"])
+    # start_date = user_data["created_at"]
+
+    # print(start_date)
+    # # print(client.rate_limit_status()['resources']["tweets"])
+    # tweet_location = data_dir + "tweets/u" + cur_user + ".json"
+    # query = 'from:harshasomisetty -is:retweet'
+
+    # tweet_fields = [
+    #     "created_at", "in_reply_to_user_id", "referenced_tweets",
+    #     "public_metrics"
+    # ]
+
+    # print()
+    # with open(tweet_location, 'w+') as filehandle:
+    #     for response in tweepy.Paginator(client.search_all_tweets,
+    #                                      query=query,
+    #                                      tweet_fields=tweet_fields,
+    #                                      start_time=start_date,
+    #                                      max_results=100).flatten(limit=1000):
+    #         print(response)
+
+    # tweets = api_mine.search_all_tweets()
+    tweet_dict = load_tweets(cur_user, api_mine)
     thread_dict = get_threads(tweet_dict)  # dict of (root id, children)
     threads = clean_threads(tweet_dict, thread_dict,
                             3)  # attaches tweet test, stores thread ids

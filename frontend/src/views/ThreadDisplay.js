@@ -1,9 +1,10 @@
-import {editSent, getTweetLink, getUserLink} from "../utils/functions.js";
+import {
+  editSent,
+  getTweetLink,
+  getUserLink,
+  formatDate,
+} from "../utils/functions.js";
 import CopyButton from "../components/CopyTextButton.js";
-
-function formatDate(d) {
-  return new Date(d).toISOString().split("T")[0];
-}
 
 const ThreadMetadata = ({data, tweets}) => {
   let d1 = formatDate(data.statistics["oldest_tweet"] * 1000);

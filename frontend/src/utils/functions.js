@@ -18,12 +18,16 @@ export function getUserLink(author) {
   return "https://twitter.com/" + author;
 }
 
+export function formatDate(d) {
+  return new Date(d).toISOString().split("T")[0];
+}
+
 export const sortTypes = {
   Likes: "like_count",
   Retweets: "retweet_count",
   Replies: "reply_count",
-  Quotes: "quote_count",
+  // Quotes: "quote_count",
   "Thread Length": "thread_length",
-  "Oldest Start": "oldest_tweet",
+  // "Oldest Start": "oldest_tweet",
   "Recently Updated": "youngest_tweet",
 };

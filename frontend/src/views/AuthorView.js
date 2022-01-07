@@ -30,7 +30,7 @@ function Reverse(props) {
 }
 
 export default function AuthorView({authorName, threads}) {
-  const [sortType, setSortType] = useState(Object.keys(sortTypes)[0]);
+  const [sortType, setSortType] = useState(Object.keys(sortTypes)[4]);
   const [reverse, setReverse] = useState(false);
   const [open, setOpen] = useState(false);
 

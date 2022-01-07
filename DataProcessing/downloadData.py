@@ -13,15 +13,14 @@ def load_all_data(authors=None):
         ]
 
     thread_length = 3
+    # thread_extraction_pipeline("harshasomisetty", thread_length)
 
     for author in authors:
         threads = thread_extraction_pipeline(author, thread_length)
 
-        # ProductionConfig().create_author_thread_db(cur_user, threads)
+    db.insert_threads(author, threads)
 
-        db.insert_threads(author, threads)
-
-        print("done", author)
+    print("done", "harshasomisetty")
 
 
 def delete_author_data(author):
@@ -35,7 +34,7 @@ def test_mongo():
 
 
 if __name__ == "__main__":
-    authors = ["dickiebush"]
+    authors = ["Ksidiii"]
 
     # delete_author_data(author)
 
