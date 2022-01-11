@@ -1,13 +1,18 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
+router.get("/:query", async function (req, res) {
+  data = [];
+  const collection = req.app.locals.twitter.collection("threads");
+  const latest = await collection
+    .find({$text: {$search: req.params.query}})
+    .sort({"statistics.youngest_tweet": -1})
+    .limit(20);
+  await latest.forEach(function (doc) {
+    data.push(doc);
+  });
 
-router.get('/:query', async function(req, res){
-  const collection = req.app.locals.threads.collection("VitruviusCurve");
-
-  await collection.createIndex( {text: "text", keywords: "text"} )
-  const test = await collection.findOne({$text: {$search: req.params.query}})
-  res.send(test["text"])
-})
+  res.send({threadData: data});
+});
 
 module.exports = router;

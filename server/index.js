@@ -6,7 +6,7 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 
 var MongoClient = require("mongodb").MongoClient;
-require("dotenv").config({ path: ".env" });
+require("dotenv").config({path: ".env"});
 
 const database = process.env.MONGO_URI || "test_uri";
 MongoClient.connect(database, function (err, client) {
@@ -28,7 +28,7 @@ app.use("/thread", threadRouter);
 app.use("/latest", latestRouter);
 
 app.get("/", function (req, res) {
-  res.send("Express Backend! ");
+  res.send("Express Backend for Twitblog!");
 });
 
 app.listen(port, () => {

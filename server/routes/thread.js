@@ -14,8 +14,6 @@ router.get("/:thread", async function (req, res) {
     author: data["author"],
     statistics: data["statistics"],
   });
-
-  console.log(data["texts"]);
 });
 
 module.exports = router;
