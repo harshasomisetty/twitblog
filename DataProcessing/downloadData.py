@@ -26,12 +26,16 @@ def test_mongo():
     print(test)
 
 
+def create_index():
+    db.create_index()
+    print("craeting index")
+
+
 if __name__ == "__main__":
     authors = ["cloudy_cl"]
     # authors=["farzaTV"]
-    print(authors)
     # delete_author_data(author)
 
-    load_all_data(authors)
-
+    # load_all_data(authors)
+    create_index()
     # test_mongo()

@@ -45,3 +45,9 @@ class Config():
         collection = self.cluster["Twitter"]["threads"]
         distinct = collection.distinct("author")
         return distinct
+
+    def create_index(self):
+        collection = self.cluster["Twitter"]["threads"]
+        collection.create_index([("keywords", "text")])
+        # for d in collection.find({"$text": {"$search": "people"}}).limit(1):
+        #     print(d)
