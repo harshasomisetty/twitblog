@@ -38,8 +38,8 @@ class Config():
 
     def delete_threads(self, author):
         collection = self.cluster["Twitter"]["threads"]
-        deleted_count = collection.delete_many({"author": author})
-        return deleted_count.deleted_count
+        collection.delete_many({"author": author})
+        # return deleted_count.deleted_count
 
     def list_authors(self):
         collection = self.cluster["Twitter"]["threads"]

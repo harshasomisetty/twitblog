@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import ThreadDisplay from "../views/ThreadDisplay.js";
+import {useState, useEffect} from "react";
+import {useParams} from "react-router-dom";
+import ThreadView from "../views/ThreadView.js";
 import Loading from "../components/Loading.js";
 import callApi from "../utils/api.js";
 
@@ -16,8 +16,11 @@ export default function Thread() {
       let response = await callApi(params);
       if (response[0]) {
         setState({
-          threadData: response[1].threadData,
-          tweets: response[1].tweets,
+          keywords: response[1].keywords,
+          texts: response[1].texts,
+          ids: response[1].ids,
+          statistics: response[1].statistics,
+          author: response[1].author,
         });
         setBusy(false);
       } else {
@@ -30,10 +33,12 @@ export default function Thread() {
   if (isBusy) return <Loading error={error} />;
   else {
     return (
-      <ThreadDisplay
-        data={state.threadData}
-        tweets={state.tweets}
-        author={state.threadData.author}
+      <ThreadView
+        keywords={state.keywords}
+        texts={state.texts}
+        ids={state.ids}
+        author={state.author}
+        statistics={state.statistics}
       />
     );
   }

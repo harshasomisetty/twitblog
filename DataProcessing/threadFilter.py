@@ -46,7 +46,12 @@ class DataPrep:
         stopwords = self.nlp.Defaults.stop_words
         # multiprocess all thread intros to get a potential title
         for doc, i in tqdm(self.nlp.pipe(intros, as_tuples=True)):
+
             t_full_text, t_ids = thread_tuples[i]
+            if "public_metrics" not in tweet_dict[t_ids[0]]:
+                print(t_ids[0])
+                continue
+
             statistics = tweet_dict[t_ids[0]]["public_metrics"]
             statistics["oldest_tweet"] = int(
                 dp.parse(tweet_dict[t_ids[0]]["created_at"][:-1]).timestamp())
@@ -60,8 +65,9 @@ class DataPrep:
                 str(t_ids[0]),
                 "author":
                 cur_user,
-                "tweets":
-                list(zip(t_full_text, [str(i) for i in thread_tuples[i][1]])),
+                "thread_texts":
+                t_full_text,
+                "thread_ids": [str(i) for i in thread_tuples[i][1]],
                 "keywords": [
                     phrase.text for phrase in doc._.phrases[:5]
                     if phrase.text not in stopwords
@@ -69,9 +75,7 @@ class DataPrep:
                 "statistics":
                 statistics
             }
-            thread_obj["title"] = title_gen(thread_obj, doc)
-            thread_obj["test"] = int(
-                dp.parse(tweet_dict[t_ids[0]]["created_at"][:-1]).timestamp())
+
             final_data.append(thread_obj)
 
         # creating a dict of tweet id to info
@@ -188,8 +192,8 @@ def thread_extraction_pipeline(cur_user: str, thread_length: int):
                             3)  # attaches tweet test, stores thread ids
 
     final_threads = DataPrep().prep_json_data(threads, cur_user, tweet_dict)
-    # print(final_threads[0]["title"])
+
     save_threads_json(final_threads, cur_user)
-    print("got", str(len(threads)), "threads")
+    print(cur_user, ":", str(len(threads)), "threads")
 
     return final_threads

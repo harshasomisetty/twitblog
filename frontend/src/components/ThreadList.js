@@ -38,7 +38,7 @@ export default function ThreadList({
                 </div>
 
                 <p className="h-2/3 font-normal text-sm antialiased indent-8 text-ellipsis overflow-hidden">
-                  {thread.tweets[0][0]}
+                  {thread.thread_texts[0]}
                 </p>
 
                 <div className="h-1/6 flex flex-col w-full h-12 text-left border-t">
