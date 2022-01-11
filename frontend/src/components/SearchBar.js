@@ -3,10 +3,10 @@ import {useNavigate} from "react-router-dom";
 
 import {FaSearch} from "react-icons/fa";
 
-const Search = () => {
+const SearchBar = ({placeHolder = "Search"}) => {
   const navigate = useNavigate();
   const signup = () => {
-    navigate("/author/" + inputs.search_query);
+    navigate("/explore/" + inputs.search_query);
   };
 
   const {inputs, handleInputChange, handleSubmit} = useSignUpForm(signup);
@@ -20,7 +20,7 @@ const Search = () => {
         type="search"
         className="search-input"
         name="search_query"
-        placeholder="Search Author"
+        placeholder={placeHolder}
         onChange={handleInputChange}
         value={inputs.search}
       />
@@ -28,4 +28,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default SearchBar;

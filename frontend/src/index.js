@@ -8,6 +8,7 @@ import App from "./App";
 import PageFormat from "./layouts/PageFormat.js";
 
 import Author from "./routes/author";
+import Explore from "./routes/explore";
 import Latest from "./routes/latest";
 import Redir from "./routes/redirect";
 import Thread from "./routes/thread";
@@ -31,6 +32,7 @@ ReactDOM.render(
             path="explore"
             element={<PageFormat Title="Explore" toAdd={true} />}
           >
+            <Route path=":searchTerm" element={<Explore />} />
             <Route index element={<ExploreView />} />
           </Route>
           <Route

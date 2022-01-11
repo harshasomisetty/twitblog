@@ -1,33 +1,7 @@
 import React, {useState} from "react";
-import {CgSortAz, CgSortZa} from "react-icons/cg";
-import {getUserLink, sortTypes} from "../utils/functions.js";
+import {getUserLink, sortTypes, Reverse} from "../utils/functions.js";
 import Dropdown from "../components/Dropdown.js";
 import ThreadList from "../components/ThreadList.js";
-
-function Reverse(props) {
-  return (
-    <button type="button" onClick={() => props.setReverse(!props.reverse)}>
-      {props.reverse ? (
-        <div className="flex flex-row space-x-1">
-          <p className="text-xs">Ascending</p>
-          <CgSortZa
-            size="15"
-            className="text-gray-500 font-extralight my-auto"
-          />
-        </div>
-      ) : (
-        <div className="flex flex-row space-x-1">
-          <p className="text-xs">Descending</p>
-
-          <CgSortAz
-            size="15"
-            className="text-gray-500 font-extralight my-auto"
-          />
-        </div>
-      )}
-    </button>
-  );
-}
 
 export default function AuthorView({authorName, threads}) {
   const [sortType, setSortType] = useState(Object.keys(sortTypes)[4]);

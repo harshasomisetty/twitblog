@@ -31,11 +31,9 @@ const ThreadReader = ({ids, author, texts}) => (
   <div className="grid grid-cols-1 divide-y divide-gray-700 p-1.5">
     {ids.map((t, i) => (
       <a href={getTweetLink(t, author)}>
-        <div key={t} className=" mb-2 p-2">
-          <p className="whitespace-pre-line antialiased">
-            {editSent(texts[i])}
-          </p>
-        </div>
+        <p key={i} className="mb-2 p-2 whitespace-pre-line antialiased">
+          {editSent(texts[i])}
+        </p>
       </a>
     ))}
   </div>

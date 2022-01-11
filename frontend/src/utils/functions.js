@@ -1,3 +1,5 @@
+import {CgSortAz, CgSortZa} from "react-icons/cg";
+
 export function editSent(str) {
   return str.replace("&gt;", ">").replace("&lt;", "<").replace("&amp;", "&");
 }
@@ -31,3 +33,28 @@ export const sortTypes = {
   // "Oldest Start": "oldest_tweet",
   "Recently Updated": "youngest_tweet",
 };
+
+export function Reverse(props) {
+  return (
+    <button type="button" onClick={() => props.setReverse(!props.reverse)}>
+      {props.reverse ? (
+        <div className="flex flex-row space-x-1">
+          <p className="text-xs">Ascending</p>
+          <CgSortZa
+            size="15"
+            className="text-gray-500 font-extralight my-auto"
+          />
+        </div>
+      ) : (
+        <div className="flex flex-row space-x-1">
+          <p className="text-xs">Descending</p>
+
+          <CgSortAz
+            size="15"
+            className="text-gray-500 font-extralight my-auto"
+          />
+        </div>
+      )}
+    </button>
+  );
+}

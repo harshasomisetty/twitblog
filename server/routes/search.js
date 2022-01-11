@@ -12,7 +12,7 @@ router.get("/:query", async function (req, res) {
     data.push(doc);
   });
 
-  res.send({threadData: data});
+  res.send({threads: data});
 });
 
 module.exports = router;
