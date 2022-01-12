@@ -11,7 +11,6 @@ router.get("/:query", async function (req, res) {
   await latest.forEach(function (doc) {
     data.push(doc);
   });
-  console.log(data);
   res.send({threads: data});
 });
 

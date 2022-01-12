@@ -8,10 +8,11 @@ const ExploreView = ({searchTerm, threadData}) => {
   return (
     <div className="flex flex-col s-3">
       <SearchBar placeHolder={searchTerm} />
-      {/* <p className="text-center text-xl p-4">Advanced Search Coming Soon</p> */}
+
       <div className="block sm:hidden">
         <AuthorList />
       </div>
+
       {threadData > 0 ? (
         <ThreadList
           threads={threadData}
@@ -21,7 +22,9 @@ const ExploreView = ({searchTerm, threadData}) => {
           author={true}
         />
       ) : (
-        <p className="text-center">No Results for '{searchTerm}'</p>
+        <p className="text-center text-xl">
+          {searchTerm ? "No Results" : "Search for Keyword"}
+        </p>
       )}
     </div>
   );

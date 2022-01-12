@@ -6,7 +6,11 @@ import {FaSearch} from "react-icons/fa";
 const SearchBar = ({placeHolder = "Search"}) => {
   const navigate = useNavigate();
   const signup = () => {
-    navigate("/explore/" + inputs.search_query);
+    if (inputs.search_query) {
+      navigate("/explore/" + inputs.search_query);
+    } else {
+      navigate("/explore");
+    }
   };
 
   const {inputs, handleInputChange, handleSubmit} = useSignUpForm(signup);
