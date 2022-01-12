@@ -10,7 +10,7 @@ router.get("/", async function (req, res) {
   const collection = req.app.locals.twitter.collection("threads");
   const distinct = await collection.distinct("author");
 
-  res.send({ authorList: distinct });
+  res.send({authorList: distinct});
 });
 
 router.get("/:author", async function (req, res) {
@@ -19,13 +19,13 @@ router.get("/:author", async function (req, res) {
 
   const collection = req.app.locals.twitter.collection("threads");
 
-  const roots = await collection.find({ author: author });
+  const roots = await collection.find({author: author});
 
   await roots.forEach(function (doc) {
     data.push(doc);
   });
 
-  res.send({ threads: data });
+  res.send({threads: data});
 });
 
 module.exports = router;

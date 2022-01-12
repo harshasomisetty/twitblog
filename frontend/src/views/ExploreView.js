@@ -5,7 +5,6 @@ import {getUserLink, sortTypes, Reverse} from "../utils/functions.js";
 import ThreadList from "../components/ThreadList.js";
 
 const ExploreView = ({searchTerm, threadData}) => {
-  // console.log(threads);
   return (
     <div className="flex flex-col s-3">
       <SearchBar placeHolder={searchTerm} />
@@ -13,13 +12,17 @@ const ExploreView = ({searchTerm, threadData}) => {
       <div className="block sm:hidden">
         <AuthorList />
       </div>
-      <ThreadList
-        threads={threadData}
-        sortType={Object.values(sortTypes)[4]}
-        reverse={false}
-        cols={1}
-        author={true}
-      />
+      {threadData > 0 ? (
+        <ThreadList
+          threads={threadData}
+          sortType={Object.values(sortTypes)[4]}
+          reverse={false}
+          cols={1}
+          author={true}
+        />
+      ) : (
+        <p className="text-center">No Results for '{searchTerm}'</p>
+      )}
     </div>
   );
 };
