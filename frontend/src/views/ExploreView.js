@@ -4,7 +4,7 @@ import AuthorList from "../components/AuthorList.js";
 import {getUserLink, sortTypes, Reverse} from "../utils/functions.js";
 import ThreadList from "../components/ThreadList.js";
 
-const ExploreView = ({searchTerm, threadData}) => {
+const ExploreView = ({searchTerm, threadData = []}) => {
   return (
     <div className="flex flex-col s-3">
       <SearchBar placeHolder={searchTerm} />
@@ -20,6 +20,7 @@ const ExploreView = ({searchTerm, threadData}) => {
           reverse={false}
           cols={1}
           author={true}
+          searchTerm={searchTerm}
         />
       ) : (
         <p className="text-center text-xl">

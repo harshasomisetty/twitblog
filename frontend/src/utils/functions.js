@@ -58,3 +58,19 @@ export function Reverse(props) {
     </button>
   );
 }
+
+export function BoldedText(text, shouldBeBold = "") {
+  const textArray = text.split(shouldBeBold);
+  return (
+    <span>
+      {textArray.map((item, index) => (
+        <>
+          {item}
+          {index !== textArray.length - 1 && (
+            <b className="font-bold underline">{shouldBeBold}</b>
+          )}
+        </>
+      ))}
+    </span>
+  );
+}

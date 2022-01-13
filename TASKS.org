@@ -1,0 +1,26 @@
+* Future Features to Implement
+** Data Management
+*** load all data into sqlite
+*** Auto Update Twitter data
+**** write methods to query until latest tweet
+**** run as it's own container
+*** limit how much data is sent on queries
+*** Expand links
+**** get and show images
+*** get rid of "title" in data scheme
+*** Better keywords
+**** no pronouns
+**** get rid of urls
+*** Summary
+** Dev
+*** Logging
+*** "Maintenence" screen
+*** github actions to autoupdate images, deploy to server
+*** SSL cert
+** UI
+*** Thread Page
+**** Thread summary
+*** Author Page
+**** main topics talked about across threads
+*** Reccomendations of similar threads
+*** Back button

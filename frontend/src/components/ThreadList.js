@@ -1,5 +1,10 @@
 import {Link} from "react-router-dom";
-import {capitalizeSent, sortTypes, formatDate} from "../utils/functions.js";
+import {
+  capitalizeSent,
+  sortTypes,
+  formatDate,
+  BoldedText,
+} from "../utils/functions.js";
 function sortThreads(threads, sortType, reverse) {
   const s = reverse * 1 === 0 ? -1 : 1;
 
@@ -14,7 +19,9 @@ export default function ThreadList({
   reverse,
   cols = 1,
   author = true,
+  searchTerm = "",
 }) {
+  console.log(searchTerm);
   return (
     <div
       className={`grid grid-cols-1 sm:grid-cols-${cols} gap-3 m-5 overflow-auto scrollbar-hide`}
@@ -23,10 +30,6 @@ export default function ThreadList({
         <div key={thread["_id"]}>
           <Link to={`/thread/${thread["_id"]}`}>
             <div className="relative flex flex-row gap-2 h-80 rounded-lg border-2 border-gray-600 p-4 sm:p-6 overflow-hidden">
-              {/* <div className="border-0 border-gray-700"> */}
-              {/* <p>{ind + 1}</p> */}
-              {/* </div> */}
-
               {/* thread card */}
               <div className="flex flex-col justify-between border-0 border-gray-700 h-full w-full">
                 <div className="h-min flex flex-row justify-between items-end space-x-3 w-full text-center border-b leading-1 h-5 ">
@@ -37,12 +40,13 @@ export default function ThreadList({
                 </div>
 
                 <p className="h-2/3 font-normal text-sm antialiased indent-8 text-ellipsis overflow-hidden">
-                  {thread.thread_texts[0]}
+                  {BoldedText(thread.thread_texts[0], searchTerm)}
                 </p>
 
                 <div className="h-1/6 flex flex-col w-full h-12 text-left border-t">
                   <p className="text-xs font-light py-2 text-clip overflow-hidden h-6">
-                    Keywords: {thread.keywords.join(", ")}
+                    Keywords:{" "}
+                    {BoldedText(thread.keywords.join(", "), searchTerm)}
                   </p>
 
                   <div className="flex flex-row justify-between space-x-2">
