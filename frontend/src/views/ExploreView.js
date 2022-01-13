@@ -5,7 +5,6 @@ import {getUserLink, sortTypes, Reverse} from "../utils/functions.js";
 import ThreadList from "../components/ThreadList.js";
 
 const ExploreView = ({searchTerm, threadData}) => {
-  console.log(threadData.length);
   return (
     <div className="flex flex-col s-3">
       <SearchBar placeHolder={searchTerm} />

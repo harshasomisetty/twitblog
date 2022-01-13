@@ -16,7 +16,7 @@ export default function Explore() {
       let response = await callApi(params);
       if (response[0]) {
         setState({threadData: response[1]});
-        // console.log(state.threadData);
+
         setBusy(false);
       } else {
         setError(response[1]);

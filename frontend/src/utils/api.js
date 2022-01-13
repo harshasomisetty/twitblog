@@ -4,10 +4,10 @@ export default async function callApi(params) {
   let url = "";
   if (process.env.NODE_ENV === "development") {
     url = "http://localhost:5000/" + params;
-    console.log("in dev");
+    // console.log("in dev");
   } else {
     url = "/api/" + params;
-    console.log("in prod");
+    // console.log("in prod");
   }
 
   let response = [];

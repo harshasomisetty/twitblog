@@ -15,7 +15,6 @@ export default function ThreadList({
   cols = 1,
   author = true,
 }) {
-  console.log(sortType);
   return (
     <div
       className={`grid grid-cols-1 sm:grid-cols-${cols} gap-3 m-5 overflow-auto scrollbar-hide`}

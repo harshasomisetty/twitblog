@@ -36,6 +36,6 @@ if __name__ == "__main__":
     # authors=["farzaTV"]
     # delete_author_data(author)
 
-    load_all_data(authors)
-    # create_index()
+    # load_all_data(authors)
+    create_index()
     # test_mongo()
