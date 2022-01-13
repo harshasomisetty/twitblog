@@ -32,10 +32,10 @@ def create_index():
 
 
 if __name__ == "__main__":
-    authors = ["cloudy_cl"]
+    authors = ["pencilflip"]
     # authors=["farzaTV"]
     # delete_author_data(author)
 
-    # load_all_data(authors)
-    create_index()
+    load_all_data(authors)
+    # create_index()
     # test_mongo()
